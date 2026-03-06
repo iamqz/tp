@@ -337,8 +337,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Resident**: A person whose record is managed by the application.
+* **Resident Assistants (RAs)**: The primary target user of the application, responsible for resident welfare and administrative follow-up.
+* **Command**: A text instruction entered by the user to perform an action in the app.
+* **Contact Information**: Personal communication details of a resident, such as phone number and email address.
+* **Room Location**: The dormitory room or unit assigned to a resident.
+* **Emergency Contact**: A contact person who should be reached in urgent situations; may refer to the next-of-kin or another designated person.
 
 --------------------------------------------------------------------------------------------------------------------
 
