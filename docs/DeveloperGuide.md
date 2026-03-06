@@ -272,29 +272,49 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Dormitory Resident Assistants (RAs)
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of residents' information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Provides quick access to residents' information (e.g. Mobile Number, Next-of-Kin's contact, Unit Number) in times of emergency
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                              | I want to …​                                                                    | So that I can…​                                                                                                                |
+|----------|--------------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | user                                 | add a new resident                                                              | add new residents into the current list of residents                                                                           |
+| `* * *`  | user                                 | delete a resident                                                               | remove people who are no longer residents, or wrong entries from the current list of residents                                 |
+| `* * *`  | user                                 | see a list of current residents                                                 | see the list of current residents                                                                                              |
+| `* *`    | advanced user                        | search for residents with partial information                                   | still find residents with only incomplete information (e.g. Only their name, part of their phone number)                       |
+| `* *`    | advanced user                        | import contacts from an appropriate file the local device                       | automatically add a set of contacts to save time and effort on manually adding                                                 |
+| `* *`    | cautious user                        | add custom notes to a residents' profile                                        | add important details to residents to remind app users of them in the future                                                   |
+| `* *`    | cautious user                        | backup resident data to a file on the local device                              | restore app data through the backup file as in case of emergencies                                                             |
+| `* *`    | forgetful/busy/concerned user        | set reminders linked to a specific individual                                   | get the system to remind me to check in on them (e.g. Residents that may require counselling)                                  |
+| `* *`    | frequent user                        | add categories to residents and search by categories                            | easily narrow down specific groups or individuals through categories                                                           |
+| `* *`    | frequent user                        | access the app data from the previous sessions when i used the app              | access and modify app data through various sessions of using the app.                                                          |
+| `* *`    | frequent user                        | autocomplete certain commands                                                   | save time on typing things out fully                                                                                           |
+| `* *`    | frequent user                        | quickly retrieve my previous inputs                                             | quickly correct a wrong input, or modify a previous input and execute it without having to spend time retyping everything      |
+| `* *`    | new user                             | access a comprehensive guide for a specific command                             | learn how to use each specific command in-depth                                                                                |
+| `* *`    | new user                             | see a list of all app commands                                                  | find out what commands are available to me                                                                                     |
+| `* *`    | new user                             | use the app which is filled with sample data                                    | use the app and explore the features while having sample data to operate on                                                    |
+| `* *`    | organised user                       | archive residents that are no longer active (i.e., not a current resident)      | maintain the relevance of the current list of residents while also having record of past residents for administrative purposes |
+| `* *`    | organised user                       | merge duplicate entries for the same individual                                 | ensure cleanliness of data and being able to conveniently combine 2 resident records into 1, instead of manually editing       |
+| `* *`    | security-conscious user              | secure the app with a password                                                  | prevent any unwanted access to sensitive information stored in the app                                                         |
+| `* *`    | user                                 | copy textual information to device's clipboard                                  | use this information for other purposes, like sending the information through a messaging app on the same device               |
+| `* *`    | user                                 | edit residents' information                                                     | update contact details and other information of residents                                                                      |
+| `* *`    | user concerned with administratives  | view "last updated" timestamps                                                  | see when the information was last modified                                                                                     |
+| `* *`    | user concerned with administratives  | view the history of user actions which modify app data and settings             | maintain accountability and cater to any administrative matters, like audits                                                   |
+| `* *`    | user concerned with administratives  | export the data to the device's local storage in a widely supported file format | use the data for other purposes, like loading it into another program, or printing it out                                      |
+| `* *`    | user with sight issues               | adjust the font size and color scheme of the app                                | better see the text on the app                                                                                                 |
+| `* *`    | visual user                          | upload residents' profile pictures                                              | easily recognise residents visually by their faces rather than name, or other information                                      |
+| `* *`    | visual user                          | change the view settings (list style, with photo, without photo, etc.)          | choose which information is more important to me currently                                                                     |
 
 *{More to be added}*
 
