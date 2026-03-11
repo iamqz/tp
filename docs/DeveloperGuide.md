@@ -324,28 +324,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC1 - Start the Application**
 
-**Precondition: User has downloaded the JAR file and has java 17 configured locally**
-
 **MSS**
 
 1.  User runs the jar file.
-2.  System converts a list of Residents from a text file.
-3.  System displays the list of Residents.
+2.  System loads Residents' information from Storage.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. No text file found.
-    * 2a1. System creates a new text file.
+* 2a. No Storage found.
+    * 2a1. System creates a new Storage.
 
-      Use case resumes at step 3.
-
-* 3a. The given index is invalid.
-
-    * 3a1. System prompt User with a message to indicate that the given index is invalid.
-
-      Use case resumes at step 2.
+      Use case ends.
 
 <br>
 
@@ -376,9 +367,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User adds the information via the command line for the new Resident.
-2. System creates the new Resident (new Resident object).
-3. System adds the new Resident.
-4. System displays the list of Residents.
+2. System adds the new Resident.
+3. System saves the new Resident to the list of Residents (Storage).
+4. System displays the updated list of Residents (UC2).
 
    Use case ends.
 
@@ -394,14 +385,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use Case: UC4 - Delete a new Resident**
+**Use Case: UC4 - Delete a Resident**
 
 **Precondition: User has started the application and the Resident to be deleted is in the list of Residents**
 
 **MSS**
-1. User requests for the list of Residents (UC2)
+1. User requests for the list of Residents (UC2).
 2. User requests for the deletion of a Resident.
-3. System deletes the specified Resident from the list and the storage (text file)
+3. System deletes the specified Resident from the list (Storage).
 4. System displays the new list of Residents.
 
    Use case ends.
