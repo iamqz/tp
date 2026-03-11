@@ -12,7 +12,7 @@ import seedu.address.model.resident.Resident;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Resident> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Resident> PREDICATE_SHOW_ALL_RESIDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -80,8 +80,14 @@ public interface Model {
     ObservableList<Resident> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Returns true if the current list has entries
+     * @return True if the current list has entries
+     */
+    boolean hasListEntries();
+
+    /**
+     * Updates the filter of the filtered residents list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Resident> predicate);
+    void updateFilteredResidentsList(Predicate<Resident> predicate);
 }

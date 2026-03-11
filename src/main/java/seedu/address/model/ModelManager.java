@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Resident resident) {
         addressBook.addPerson(resident);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredResidentsList(PREDICATE_SHOW_ALL_RESIDENTS);
     }
 
     @Override
@@ -123,7 +123,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Resident> predicate) {
+    public boolean hasListEntries() {
+        return !getFilteredPersonList().isEmpty();
+    }
+
+    @Override
+    public void updateFilteredResidentsList(Predicate<Resident> predicate) {
         requireNonNull(predicate);
         filteredResidents.setPredicate(predicate);
     }

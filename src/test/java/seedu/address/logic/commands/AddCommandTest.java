@@ -154,7 +154,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Resident> predicate) {
+        public boolean hasListEntries() {
+            return false;
+        }
+
+        @Override
+        public void updateFilteredResidentsList(Predicate<Resident> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

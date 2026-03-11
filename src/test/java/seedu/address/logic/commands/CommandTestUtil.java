@@ -120,7 +120,7 @@ public class CommandTestUtil {
 
         Resident resident = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = resident.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredResidentsList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
