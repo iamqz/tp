@@ -16,15 +16,15 @@ public class HelpWindow extends UiPart<Stage> {
 Available commands:
 
 add: Adds a resident to the address book.
-Format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
-Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends
+Format: add n/NAME p/PHONE_NUMBER u/UNIT_NO [t/TAG]...
+Example: add n/John Doe p/98765432 e/johnd@example.com u/02-25 t/friends
 
 list: Shows all residents.
 Format: list
 
 edit: Edits an existing resident by index.
-Format: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
-Example: edit 1 p/91234567 e/johndoe@example.com
+Format: edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NO] [t/TAG]...
+Example: edit 1 p/91234567 u/03-14
 
 find: Finds residents whose names match the given keywords.
 Format: find KEYWORD [MORE_KEYWORDS]...
