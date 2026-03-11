@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,6 +25,7 @@ import seedu.address.model.resident.Address;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
+import seedu.address.model.resident.Remark;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.tag.Tag;
 
@@ -70,21 +71,21 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Resident> lastShownList = model.getFilteredPersonList();
+        List<Resident> lastShownList = model.getFilteredResidentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
         }
 
         Resident residentToEdit = lastShownList.get(index.getZeroBased());
         Resident editedResident = createEditedPerson(residentToEdit, editResidentDescriptor);
 
-        if (!residentToEdit.isSamePerson(editedResident) && model.hasPerson(editedResident)) {
+        if (!residentToEdit.isSamePerson(editedResident) && model.hasResident(editedResident)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(residentToEdit, editedResident);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setResident(residentToEdit, editedResident);
+        model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedResident)));
     }
 
@@ -100,8 +101,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editResidentDescriptor.getEmail().orElse(residentToEdit.getEmail());
         Address updatedAddress = editResidentDescriptor.getAddress().orElse(residentToEdit.getAddress());
         Set<Tag> updatedTags = editResidentDescriptor.getTags().orElse(residentToEdit.getTags());
+        Remark updatedRemark = editResidentDescriptor.getRemark().orElse(residentToEdit.getRemark());
 
-        return new Resident(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Resident(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedRemark);
     }
 
     @Override
@@ -138,6 +140,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Remark remark;
 
         public EditResidentDescriptor() {}
 
@@ -151,6 +154,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setRemark(toCopy.remark);
         }
 
         /**
@@ -209,6 +213,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -238,5 +250,7 @@ public class EditCommand extends Command {
                     .add("tags", tags)
                     .toString();
         }
+
+
     }
 }

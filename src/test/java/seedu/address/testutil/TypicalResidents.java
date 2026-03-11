@@ -30,7 +30,8 @@ public class TypicalResidents {
     public static final Resident BENSON = new ResidentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withRemark("He is funny").build();
     public static final Resident CARL = new ResidentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Resident DANIEL = new ResidentBuilder().withName("Daniel Meier").withPhone("87652533")

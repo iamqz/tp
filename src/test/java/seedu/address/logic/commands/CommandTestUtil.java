@@ -60,6 +60,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditResidentDescriptor DESC_AMY;
     public static final EditCommand.EditResidentDescriptor DESC_BOB;
 
+    public static final String VALID_REMARK_AMY = "Like skiing.";
+    public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
+
+
     static {
         DESC_AMY = new EditResidentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -105,24 +109,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Resident> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Resident> expectedFilteredList = new ArrayList<>(actualModel.getFilteredResidentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredResidentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredResidentList().size());
 
-        Resident resident = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Resident resident = model.getFilteredResidentList().get(targetIndex.getZeroBased());
         final String[] splitName = resident.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredResidentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredResidentList().size());
     }
 
 }
