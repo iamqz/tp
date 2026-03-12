@@ -1,19 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UNITNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNITNUMBER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -21,12 +16,10 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.resident.UnitNumber;
-import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.resident.UnitNumber;
 
 /**
  * Edits the details of an existing person in the unitNumber book.
@@ -41,12 +34,9 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_UNITNUMBER + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_UNITNUMBER + "ADDRESS] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + "91234567";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -97,11 +87,9 @@ public class EditCommand extends Command {
 
         Name updatedName = editResidentDescriptor.getName().orElse(residentToEdit.getName());
         Phone updatedPhone = editResidentDescriptor.getPhone().orElse(residentToEdit.getPhone());
-        Email updatedEmail = editResidentDescriptor.getEmail().orElse(residentToEdit.getEmail());
         UnitNumber updatedUnitNumber = editResidentDescriptor.getAddress().orElse(residentToEdit.getUnitNumber());
-        Set<Tag> updatedTags = editResidentDescriptor.getTags().orElse(residentToEdit.getTags());
 
-        return new Resident(updatedName, updatedPhone, updatedEmail, updatedUnitNumber, updatedTags);
+        return new Resident(updatedName, updatedPhone, updatedUnitNumber);
     }
 
     @Override
@@ -135,9 +123,7 @@ public class EditCommand extends Command {
     public static class EditResidentDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
         private UnitNumber unitNumber;
-        private Set<Tag> tags;
 
         public EditResidentDescriptor() {}
 
@@ -148,16 +134,14 @@ public class EditCommand extends Command {
         public EditResidentDescriptor(EditResidentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setAddress(toCopy.unitNumber);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, unitNumber, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, unitNumber);
         }
 
         public void setName(Name name) {
@@ -176,37 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
         public void setAddress(UnitNumber unitNumber) {
             this.unitNumber = unitNumber;
         }
 
         public Optional<UnitNumber> getAddress() {
             return Optional.ofNullable(unitNumber);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
@@ -223,9 +182,7 @@ public class EditCommand extends Command {
             EditResidentDescriptor otherEditResidentDescriptor = (EditResidentDescriptor) other;
             return Objects.equals(name, otherEditResidentDescriptor.name)
                     && Objects.equals(phone, otherEditResidentDescriptor.phone)
-                    && Objects.equals(email, otherEditResidentDescriptor.email)
-                    && Objects.equals(unitNumber, otherEditResidentDescriptor.unitNumber)
-                    && Objects.equals(tags, otherEditResidentDescriptor.tags);
+                    && Objects.equals(unitNumber, otherEditResidentDescriptor.unitNumber);
         }
 
         @Override
@@ -233,9 +190,7 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("phone", phone)
-                    .add("email", email)
                     .add("unitNumber", unitNumber)
-                    .add("tags", tags)
                     .toString();
         }
     }

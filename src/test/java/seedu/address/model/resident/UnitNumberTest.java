@@ -31,7 +31,8 @@ public class UnitNumberTest {
         // valid addresses
         assertTrue(UnitNumber.isValidUnitNumber("Blk 456, Den Road, #01-355"));
         assertTrue(UnitNumber.isValidUnitNumber("-")); // one character
-        assertTrue(UnitNumber.isValidUnitNumber("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // long address
+        assertTrue(UnitNumber.isValidUnitNumber("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
     }
 
     @Test
