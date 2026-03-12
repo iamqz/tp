@@ -3,10 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -15,14 +12,38 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String COMMAND_LIST_MESSAGE = """
+Available commands:
 
+add: Adds a resident to the address book.
+Format: add n/NAME p/PHONE_NUMBER u/UNIT_NO [t/TAG]...
+Example: add n/John Doe p/98765432 u/02-25 t/friends
+
+list: Shows all residents.
+Format: list
+
+edit: Edits an existing resident by index.
+Format: edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NO] [t/TAG]...
+Example: edit 1 p/91234567 u/03-14
+
+find: Finds residents whose names match the given keywords.
+Format: find KEYWORD [MORE_KEYWORDS]...
+Example: find alex david
+
+delete: Deletes a resident by index.
+Format: delete INDEX
+Example: delete 2
+
+clear: Deletes all residents from the address book.
+Format: clear
+
+help: Shows this command list.
+Format: help
+
+exit: Exits the application.
+Format: exit""";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-
-    @FXML
-    private Button copyButton;
 
     @FXML
     private Label helpMessage;
@@ -34,7 +55,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpMessage.setText(COMMAND_LIST_MESSAGE);
     }
 
     /**
@@ -87,16 +108,5 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
-    }
-
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     */
-    @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
     }
 }
