@@ -70,10 +70,10 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Resident> lastShownList = model.getFilteredPersonList();
+        List<Resident> lastShownList = model.getFilteredResidentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
         }
 
         Resident residentToEdit = lastShownList.get(index.getZeroBased());

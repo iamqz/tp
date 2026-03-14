@@ -94,8 +94,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Resident target) {
-        addressBook.removePerson(target);
+    public void deleteResident(Resident target) {
+        addressBook.removeResident(target);
     }
 
     @Override
@@ -118,13 +118,13 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Resident> getFilteredPersonList() {
+    public ObservableList<Resident> getFilteredResidentList() {
         return filteredResidents;
     }
 
     @Override
     public boolean hasListEntries() {
-        return !getFilteredPersonList().isEmpty();
+        return !getFilteredResidentList().isEmpty();
     }
 
     @Override
