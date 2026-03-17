@@ -104,7 +104,8 @@ public class LogicManagerTest {
     @Test
     public void execute_listAfterSort_resetsDisplayedResidentOrder() throws Exception {
         Resident zed = new ResidentBuilder().withName("Zed Tan").withPhone("300").withUnitNumber("Gamma Block").build();
-        Resident amy = new ResidentBuilder().withName("Amy Lim").withPhone("1000").withUnitNumber("Alpha Block").build();
+        Resident amy = new ResidentBuilder().withName("Amy Lim").withPhone("1000")
+                .withUnitNumber("Alpha Block").build();
         Resident mike = new ResidentBuilder().withName("Mike Goh").withPhone("200").withUnitNumber("Beta Block")
                 .build();
         model.addResident(zed);

@@ -140,7 +140,8 @@ public class ModelManagerTest {
         modelManager = new ModelManager(addressBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
 
-        modelManager.updateSortedResidentsList(Comparator.comparing((Resident resident) -> resident.getName().fullName));
+        modelManager.updateSortedResidentsList(Comparator
+                .comparing((Resident resident) -> resident.getName().fullName));
         assertFalse(modelManager.equals(modelManagerCopy));
 
         modelManager.resetSortedResidentsList();
