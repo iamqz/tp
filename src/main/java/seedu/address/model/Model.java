@@ -55,7 +55,7 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Resident resident);
+    boolean hasResident(Resident resident);
 
     /**
      * Deletes the given resident.
@@ -67,7 +67,7 @@ public interface Model {
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Resident resident);
+    void addResident(Resident resident);
 
     /**
      * Replaces the given resident {@code target} with {@code editedResident}.
@@ -75,7 +75,7 @@ public interface Model {
      * The resident identity of {@code editedResident}
      * must not be the same as another existing resident in the address book.
      */
-    void setPerson(Resident target, Resident editedResident);
+    void setResident(Resident target, Resident editedResident);
 
     /** Returns an unmodifiable view of the filtered resident list */
     ObservableList<Resident> getFilteredResidentList();

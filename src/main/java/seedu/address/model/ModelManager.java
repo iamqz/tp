@@ -88,7 +88,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Resident resident) {
+    public boolean hasResident(Resident resident) {
         requireNonNull(resident);
         return addressBook.hasPerson(resident);
     }
@@ -99,13 +99,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Resident resident) {
+    public void addResident(Resident resident) {
         addressBook.addPerson(resident);
         updateFilteredResidentsList(PREDICATE_SHOW_ALL_RESIDENTS);
     }
 
     @Override
-    public void setPerson(Resident target, Resident editedResident) {
+    public void setResident(Resident target, Resident editedResident) {
         requireAllNonNull(target, editedResident);
 
         addressBook.setPerson(target, editedResident);
