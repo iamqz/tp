@@ -95,7 +95,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteResident(Resident target) {
-        addressBook.removePerson(target);
+        addressBook.removeResident(target);
     }
 
     @Override

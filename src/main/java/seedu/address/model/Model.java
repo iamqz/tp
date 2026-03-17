@@ -58,8 +58,8 @@ public interface Model {
     boolean hasResident(Resident resident);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given resident.
+     * The resident must exist in the address book.
      */
     void deleteResident(Resident target);
 
@@ -70,13 +70,14 @@ public interface Model {
     void addResident(Resident resident);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given resident {@code target} with {@code editedResident}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The resident identity of {@code editedResident}
+     * must not be the same as another existing resident in the address book.
      */
     void setResident(Resident target, Resident editedResident);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered resident list */
     ObservableList<Resident> getFilteredResidentList();
 
     /**
