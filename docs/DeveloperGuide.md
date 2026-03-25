@@ -406,6 +406,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 3.
 
+<br>
+
+**Use Case: UC5 - Copy Resident Information**
+
+**Precondition: User has started the application**
+
+**MSS**
+1. User requests for the list of Residents (UC2).
+2. User requests to copy resident information.
+3. System copies all displayed residents' information (names, phone numbers, emails, addresses, tags) to the device's clipboard.
+4. System displays a confirmation message.
+
+   Use case ends.
+
+**Extensions**
+* 1a. User has applied a search filter using find command.
+    * 1a1. System copies only the residents matching the search results to the device's clipboard.
+    
+      Use case resumes from step 4.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -482,6 +502,23 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Copying resident information
+
+1. Copying all resident information while showing residents
+
+   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+   1. Test case: `copy`<br>
+      Expected: All displayed residents' information is copied to clipboard. Confirmation message shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `copy` after using `find` command<br>
+      Expected: All residents matching the search results are copied to clipboard. Confirmation message shown in the status message.
+
+   1. Test case: `copy` when the list is empty<br>
+      Expected: Command executes but copies empty or minimal data. Appropriate message shown in the status message.
 
 1. _{ more test cases …​ }_
 

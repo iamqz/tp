@@ -163,6 +163,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
+### Copying resident information : `copy`
+
+Copies all the displayed resident information to your device's clipboard.
+
+Format: `copy`
+
+* Copies all available resident information currently displayed.
+* The copied information includes the names, phone numbers, emails, addresses, and tags of all residents in the current view.
+
+Examples:
+* `list` followed by `copy` copies all residents' information in the address book.
+* `find Betsy` followed by `copy` copies the information of all residents matching the search results.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -215,6 +228,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
+**Copy**   | `copy`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
