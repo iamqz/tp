@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT_NUMBER;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
 import seedu.address.model.resident.Resident;
 
@@ -21,10 +23,10 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords or matches the specified fielded criteria and displays them as a list "
             + "with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... or "
-            + "[" + CliSyntax.PREFIX_NAME + "NAME_KEYWORDS]... "
-            + "[" + CliSyntax.PREFIX_PHONE + "PHONE_FRAGMENT]... "
-            + "[" + CliSyntax.PREFIX_UNIT_NUMBER + "UNIT_FRAGMENT]...\n"
+            + "Parameters: [MORE_KEYWORDS]... or \n"
+            + "[" + PREFIX_NAME + "NAME]..."
+            + "[" + PREFIX_PHONE + "PHONE]..."
+            + "[" + PREFIX_UNIT_NUMBER + "UNIT_NUMBER]...\n"
             + "Examples: " + COMMAND_WORD + " alice bob charlie\n"
             + "          " + COMMAND_WORD + " n/alice bob p/9876 u/02-25";
 

@@ -27,8 +27,10 @@ Format: edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NO]
 Example: edit 1 p/91234567 u/03-14
 
 find: Finds residents whose names match the given keywords.
-Format: find KEYWORD [MORE_KEYWORDS]...
-Example: find alex david
+Format: find [n/NAME]...[p/PHONE] [u/UNIT_NO]...
+Alternative format: find [MORE_KEYWORDS]...
+Example 1: find n/alice bob p/9876 u/02-25
+Example 2: find alex david
 
 sort: Sorts the displayed list of residents by the specified field.
 Format: sort FIELD
