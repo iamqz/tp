@@ -80,7 +80,7 @@ class JsonAdaptedResident {
 
         if (role == null) {
             // For OLDER data (without role field)
-            return new Resident(modelName, modelPhone, modelUnitNumber);
+            return new Resident(modelName, modelPhone, modelUnitNumber, Role.NONE);
         }
 
         if (!Role.isValidRole(role)) {

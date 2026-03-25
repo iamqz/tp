@@ -5,7 +5,7 @@ package seedu.address.model.resident;
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}.
  */
 public enum Role {
-    NONE("None"),
+    NONE("NONE"),
     HA("House Assistant"),
     FH("Floor Head"),
     RA("Resident Assistant");
