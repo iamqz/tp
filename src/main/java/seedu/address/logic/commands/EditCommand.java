@@ -34,7 +34,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_UNIT_NUMBER + "ADDRESS] \n"
+            + "[" + PREFIX_UNIT_NUMBER + "UNIT_NUMBER] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567";
 

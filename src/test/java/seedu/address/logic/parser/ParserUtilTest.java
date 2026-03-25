@@ -95,26 +95,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseUnitNumber_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnitNumber((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseUnitNumber(INVALID_ADDRESS));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseAddress_validValueWithoutWhitespace_returnsUnitNumber() throws Exception {
         UnitNumber expectedUnitNumber = new UnitNumber(VALID_ADDRESS);
-        assertEquals(expectedUnitNumber, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedUnitNumber, ParserUtil.parseUnitNumber(VALID_ADDRESS));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseAddress_validValueWithWhitespace_returnsTrimmedUnitNumber() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         UnitNumber expectedUnitNumber = new UnitNumber(VALID_ADDRESS);
-        assertEquals(expectedUnitNumber, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedUnitNumber, ParserUtil.parseUnitNumber(addressWithWhitespace));
     }
 
 }
