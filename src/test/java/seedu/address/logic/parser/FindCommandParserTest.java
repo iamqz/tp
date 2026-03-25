@@ -12,6 +12,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
+    private static final String MESSAGE_MIXED_FIND_SYNTAX =
+            "Find command cannot mix prefixed and unprefixed search terms. "
+            + "Use either unprefixed name keywords only, or prefix every search term with n/, p/, or u/.";
 
     private FindCommandParser parser = new FindCommandParser();
 
@@ -29,6 +32,11 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_mixedPrefixedAndUnprefixedArgs_throwsParseException() {
+        assertParseFailure(parser, "9876 n/Bob", MESSAGE_MIXED_FIND_SYNTAX);
     }
 
 }
