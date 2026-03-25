@@ -139,7 +139,7 @@ Format:
 * Name-only search: `find KEYWORD [MORE_KEYWORDS]...`
 * Fielded search: `find [n/NAME_KEYWORDS]... [p/PHONE_FRAGMENT]... [u/UNIT_FRAGMENT]...`
 
-Legacy name search:
+Name-only search:
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.

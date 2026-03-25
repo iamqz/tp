@@ -13,22 +13,22 @@ import seedu.address.model.Model;
 import seedu.address.model.resident.Resident;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all residents in the address book that match the configured find predicate.
+ *
+ * <p>This command supports both name-only searches and fielded searches.</p>
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords or matches the specified fielded criteria and displays them as a list "
-            + "with index numbers.\n"
-            + "Parameters: [MORE_KEYWORDS]... or \n"
-            + "[" + PREFIX_NAME + "NAME]..."
-            + "[" + PREFIX_PHONE + "PHONE]..."
-            + "[" + PREFIX_UNIT_NUMBER + "UNIT_NUMBER]...\n"
-            + "Examples: " + COMMAND_WORD + " alice bob charlie\n"
-            + "          " + COMMAND_WORD + " n/alice bob p/9876 u/02-25";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds residents using either name keywords or "
+            + "fielded search criteria and displays them as a list with index numbers.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]... or "
+            + "[" + PREFIX_NAME + "NAME_KEYWORDS]... "
+            + "[" + PREFIX_PHONE + "PHONE_FRAGMENT]... "
+            + "[" + PREFIX_UNIT_NUMBER + "UNIT_FRAGMENT]...\n"
+            + "Examples: " + COMMAND_WORD + " alex david\n"
+            + "          " + COMMAND_WORD + " n/alex n/david p/9876 u/02-25";
 
     private final Predicate<Resident> predicate;
 
