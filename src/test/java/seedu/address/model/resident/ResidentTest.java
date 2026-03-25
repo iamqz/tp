@@ -77,7 +77,7 @@ public class ResidentTest {
     @Test
     public void toStringMethod() {
         String expected = Resident.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", unitNumber=" + ALICE.getUnitNumber() + "}";
+                + ", unitNumber=" + ALICE.getUnitNumber() + ", role=" + ALICE.getRole() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
