@@ -41,7 +41,7 @@ class JsonAdaptedResident {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         unitNumber = source.getUnitNumber().value;
-        role = source.getRole().role;
+        role = source.getRole().name(); // since this is a String
     }
 
     /**
@@ -79,14 +79,14 @@ class JsonAdaptedResident {
 
 
         if (role == null) {
-            // For OLDER data (without role field)
-            return new Resident(modelName, modelPhone, modelUnitNumber, Role.NONE);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
         }
 
         if (!Role.isValidRole(role)) {
             throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
         }
-        final Role modelRole = Role.valueOf(role);
+        final Role modelRole = Role.valueOf(role.toUpperCase());
+
         return new Resident(modelName, modelPhone, modelUnitNumber, modelRole);
     }
 

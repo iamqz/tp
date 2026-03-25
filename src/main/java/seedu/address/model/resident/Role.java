@@ -34,6 +34,7 @@ public enum Role {
 
     @Override
     public String toString() {
-        return this == NONE ? "resident" : role;
+        return role;
     }
+
 }

@@ -92,7 +92,7 @@ public class Resident {
         return name.equals(otherResident.name)
                 && phone.equals(otherResident.phone)
                 && unitNumber.equals(otherResident.unitNumber)
-                && role.equals(otherResident.role);
+                && role == otherResident.role; // instead of equals
     }
 
     @Override

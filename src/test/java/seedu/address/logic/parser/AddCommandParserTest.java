@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -41,13 +42,13 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
-                + ADDRESS_DESC_BOB, new AddCommand(expectedResident));
+                + ADDRESS_DESC_BOB + ROLE_DESC_BOB, new AddCommand(expectedResident));
 
 
         // multiple tags - all accepted
         Resident expectedResidentMultipleTags = new ResidentBuilder(BOB).build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB,
+                NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + ROLE_DESC_BOB,
                 new AddCommand(expectedResidentMultipleTags));
     }
 
