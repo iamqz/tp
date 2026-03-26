@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
+import seedu.address.model.resident.Role;
 import seedu.address.model.resident.UnitNumber;
 
 public class JsonAdaptedResidentTest {
@@ -72,6 +73,13 @@ public class JsonAdaptedResidentTest {
         JsonAdaptedResident person = new JsonAdaptedResident(VALID_NAME, VALID_PHONE, null, VALID_ROLE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, UnitNumber.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidRole_throwsIllegalValueException() {
+        JsonAdaptedResident resident = new JsonAdaptedResident(VALID_NAME, VALID_PHONE, VALID_ADDRESS, INVALID_ROLE);
+        String expectedMessage = Role.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, resident::toModelType);
     }
 
 }
