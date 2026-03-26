@@ -115,7 +115,7 @@ Examples:
 * `sort unit`
 
 ### Editing a resident : `edit`
-
+``
 Edits an existing resident in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
@@ -137,7 +137,7 @@ Finds residents using either name keywords or fielded search criteria.
 
 Format:
 * Name-only search: `find KEYWORD [MORE_KEYWORDS]...`
-* Fielded search: `find [n/NAME_KEYWORDS]... [p/PHONE_FRAGMENT]... [u/UNIT_FRAGMENT]...`
+* Fielded search: `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]...`
 
 Name-only search:
 * The search is case-insensitive. e.g `hans` will match `Hans`
