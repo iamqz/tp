@@ -148,13 +148,13 @@ Name-only search:
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Fielded search:
-* If any prefix is used, all search terms must be prefixed.
+* If any prefix is used, text after a prefix is treated as part of that field until another recognized prefix appears.
 * `n/` matches resident names as case-insensitive full words.
 * `p/` matches phone numbers by substring.
 * `u/` matches unit numbers by case-insensitive substring.
 * Multiple search terms within the same field are combined using `OR`.
 * Different fields are combined using `AND`.
-* Mixed syntax is invalid.
+* Unprefixed text before the first prefix is invalid.
   e.g. `find 9876 n/Bob` is not allowed
 
 Examples:
@@ -165,6 +165,7 @@ Examples:
 * `find u/02-25` returns residents whose unit numbers contain `02-25`
 * `find n/Alex p/9876 u/02-25` returns residents matching all three field criteria
 * `find n/alex david` or `find n/alex n/david` returns `Alex Yeoh`, `David Li`
+  because `david` is treated as part of the `n/` field until another prefix appears
 
 ### Deleting a resident : `delete`
 
@@ -234,7 +235,7 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]...` or `find [n/NAME_KEYWORDS]... [p/PHONE_FRAGMENT]... [u/UNIT_FRAGMENT]...`<br> e.g., `find James Jake`, `find n/James p/2222 u/02-25`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]...` or `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]...`<br> e.g., `find James Jake`, `find n/James Jake p/2222 u/02-25`
 **List**   | `list`
 **Help**   | `help`
 **Sort**   | `sort FIELD`<br> e.g., `sort name`
