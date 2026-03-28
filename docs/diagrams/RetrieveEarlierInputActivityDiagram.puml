@@ -10,7 +10,7 @@ start
 
 :Display earlier input;
 
-:Style input field to  current input is from history;
+:Style input field to current input is from history;
 
 stop
 @enduml
