@@ -81,7 +81,7 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_sortByPhone_withLargePhoneNumbers_showsResidentsInNumericOrder() throws CommandException {
+    public void execute_sortByPhone_showsResidentsInPhoneOrderWithLargePhoneNumbers() throws CommandException {
         Resident largePhoneResident = new ResidentBuilder().withName("Large Phone")
                 .withPhone("999999999999999999999999").withUnitNumber("Gamma Block").build();
         Resident smallPhoneResident = new ResidentBuilder().withName("Small Phone")
@@ -101,7 +101,10 @@ public class SortCommandTest {
         CommandResult commandResult = sortCommand.execute(model);
 
         assertEquals(SortCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
-        assertResidentOrder(model.getFilteredResidentList(), smallPhoneResident, mediumPhoneResident, largePhoneResident);
+        assertResidentOrder(model.getFilteredResidentList(),
+                smallPhoneResident,
+                mediumPhoneResident,
+                largePhoneResident);
     }
 
     @Test
@@ -115,7 +118,7 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_sortByUnitNumber_naturalOrder_showsResidentsInNaturalOrder() throws CommandException {
+    public void execute_sortByUnitNumber_showsResidentsInNaturalOrder() throws CommandException {
         Resident unitTwoResident = new ResidentBuilder().withName("Unit Two")
                 .withPhone("100").withUnitNumber("Block 2").build();
         Resident unitTenResident = new ResidentBuilder().withName("Unit Ten")
