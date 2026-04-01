@@ -63,6 +63,18 @@ public class TypicalResidents {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} with the typical residents but without explicit roles.
+     * This matches legacy save files created before the role field was introduced.
+     */
+    public static AddressBook getTypicalLegacyAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Resident resident : getTypicalResidents()) {
+            ab.addResident(new Resident(resident.getName(), resident.getPhone(), resident.getUnitNumber()));
+        }
+        return ab;
+    }
+
     public static List<Resident> getTypicalResidents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }

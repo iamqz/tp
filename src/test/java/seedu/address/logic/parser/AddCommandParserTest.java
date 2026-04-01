@@ -73,7 +73,7 @@ public class AddCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_UNIT_NUMBER));
 
         // multiple roles
-        assertParseFailure(parser, ROLE_DESC_AMY + validExpectedPersonString,
+        assertParseFailure(parser, ROLE_DESC_AMY + validExpectedResidentString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ROLE));
 
         // multiple fields repeated

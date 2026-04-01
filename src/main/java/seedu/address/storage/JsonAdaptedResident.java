@@ -33,11 +33,15 @@ class JsonAdaptedResident {
         this.name = name;
         this.phone = phone;
         this.unitNumber = unitNumber != null ? unitNumber : legacyUnitNumber;
+        this.role = role;
     }
 
     public JsonAdaptedResident(String name, String phone, String unitNumber) {
-        this(name, phone, unitNumber, null);
-        this.role = role;
+        this(name, phone, unitNumber, null, null);
+    }
+
+    public JsonAdaptedResident(String name, String phone, String unitNumber, String role) {
+        this(name, phone, unitNumber, null, role);
     }
 
     /**

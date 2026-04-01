@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalResidents.ALICE;
 import static seedu.address.testutil.TypicalResidents.HOON;
 import static seedu.address.testutil.TypicalResidents.IDA;
 import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalResidents.getTypicalLegacyAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,13 +64,13 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAddressBook_legacyPersonsFile_success() throws Exception {
         ReadOnlyAddressBook readBack = readAddressBook("legacyPersonsAddressBook.json").get();
-        assertEquals(getTypicalAddressBook(), new AddressBook(readBack));
+        assertEquals(getTypicalLegacyAddressBook(), new AddressBook(readBack));
     }
 
     @Test
     public void readAddressBook_legacyAddressFieldFile_success() throws Exception {
         ReadOnlyAddressBook readBack = readAddressBook("legacyAddressFieldAddressBook.json").get();
-        assertEquals(getTypicalAddressBook(), new AddressBook(readBack));
+        assertEquals(getTypicalLegacyAddressBook(), new AddressBook(readBack));
     }
 
     @Test

@@ -36,8 +36,8 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(LEGACY_PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalResidentsAddressBook = TypicalResidents.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalResidentsAddressBook);
+        AddressBook expectedLegacyAddressBook = TypicalResidents.getTypicalLegacyAddressBook();
+        assertEquals(addressBookFromFile, expectedLegacyAddressBook);
     }
 
     @Test
@@ -45,8 +45,8 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(LEGACY_ADDRESS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalResidentsAddressBook = TypicalResidents.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalResidentsAddressBook);
+        AddressBook expectedLegacyAddressBook = TypicalResidents.getTypicalLegacyAddressBook();
+        assertEquals(addressBookFromFile, expectedLegacyAddressBook);
     }
 
     @Test
