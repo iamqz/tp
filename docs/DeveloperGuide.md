@@ -426,6 +426,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes from step 4.
 
+<br>
+
+**Use Case: UC6 - Navigate to an Earlier Input**
+
+**Precondition: User has started the application**
+
+**MSS**
+1. User requests to navigate to an earlier input.
+2. System displays the earlier input.
+
+    Steps 1 and 2 are repeated as long as the user continues to request to navigate to an earlier input.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Input history is empty.
+    * 1a1. Nothing changes.
+
+      Use case ends.
+
+* 1b. User is already at the earliest input.
+    * 1b1. Nothing changes.
+
+      Use case ends.
+
+<br>
+
+**Use Case: UC7 - Navigate to a Later Input**
+
+**Precondition: User has started the application**
+
+**MSS**
+1. User requests to navigate to a later input.
+2. System displays the later input.
+
+   Steps 1 and 2 are repeated as long as the user continues to request to navigate to a later input.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Input history is empty.
+    * 1a1. Nothing changes.
+
+      Use case ends.
+
+* 1b. User is already at the latest input.
+    * 1b1. System exits input history navigation.
+
+      Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements

@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.resident.Role;
 import seedu.address.model.resident.UnitNumber;
 
 /**
@@ -19,6 +20,7 @@ class JsonAdaptedResident {
     private final String name;
     private final String phone;
     private final String unitNumber;
+    private final String role;
 
     /**
      * Constructs a {@code JsonAdaptedResident} with the given resident details.
@@ -26,7 +28,8 @@ class JsonAdaptedResident {
     @JsonCreator
     public JsonAdaptedResident(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                @JsonProperty("unitNumber") String unitNumber,
-                               @JsonProperty("address") String legacyUnitNumber) {
+                               @JsonProperty("address") String legacyUnitNumber,
+                               @JsonProperty("role") String role) {
         this.name = name;
         this.phone = phone;
         this.unitNumber = unitNumber != null ? unitNumber : legacyUnitNumber;
@@ -34,6 +37,7 @@ class JsonAdaptedResident {
 
     public JsonAdaptedResident(String name, String phone, String unitNumber) {
         this(name, phone, unitNumber, null);
+        this.role = role;
     }
 
     /**
@@ -43,6 +47,8 @@ class JsonAdaptedResident {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         unitNumber = source.getUnitNumber().value;
+        // since this is a String
+        role = source.getRole() != null ? source.getRole().name() : Role.NONE.name();
     }
 
     /**
@@ -78,7 +84,18 @@ class JsonAdaptedResident {
         }
         final UnitNumber modelUnitNumber = new UnitNumber(unitNumber);
 
-        return new Resident(modelName, modelPhone, modelUnitNumber);
+
+        final Role modelRole;
+        if (role == null || role.trim().isEmpty()) {
+            modelRole = Role.NONE;
+        } else {
+            if (!Role.isValidRole(role)) {
+                throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+            }
+            modelRole = Role.valueOf(role.toUpperCase());
+        }
+
+        return new Resident(modelName, modelPhone, modelUnitNumber, modelRole);
     }
 
 }
