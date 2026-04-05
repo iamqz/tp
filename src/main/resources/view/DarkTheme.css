@@ -95,7 +95,7 @@
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
+    -fx-padding: 0;
 }
 
 .table-view .column-header-background {
@@ -146,16 +146,15 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 10px 0;
+    -fx-padding: 0 7px 12px 0;
     -fx-background-color: transparent;
     -fx-background-radius: 1.5em;
 }
 
-.list-cell:filled:selected #cardPane {
+.list-cell:filled:selected .resident-card {
     -fx-background-color: #606669;
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
-    -fx-border-radius: 1.5em;
 }
 
 .list-cell .label {
@@ -174,13 +173,23 @@
     -fx-text-fill: #010504;
 }
 
+.resident-card {
+    -fx-background-color: #606669;
+    -fx-border-color: #606669;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 1.5em;
+    -fx-border-radius: 1.5em;
+    -fx-padding: 13px 18px 13px 18px;
+}
+
 .resident-card-index {
-    -fx-font-family: "Montserrat SemiBold";
+    -fx-font-family: "Montserrat Medium";
     -fx-font-size: 18px;
 }
 
 .resident-card-name {
-    -fx-font-family: "Montserrat Medium";
+    -fx-font-family: "Montserrat SemiBold";
     -fx-font-size: 18px;
 }
 
@@ -200,8 +209,6 @@
 
 .pane-with-border {
     -fx-background-color: derive(#1d1d1d, 20%);
-    /*-fx-border-color: derive(#1d1d1d, 10%);*/
-    /*-fx-border-top-width: 1px;*/
 }
 
 .pane-border-overhang-bottom {
@@ -370,12 +377,6 @@
     -fx-padding: 8 1 8 1;
 }
 
-#cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-    -fx-border-radius: 10;
-}
-
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
@@ -384,7 +385,7 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: transparent transparent #eeeeee transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Montserrat";
@@ -399,7 +400,7 @@
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
-    -fx-border-color: #ffffff;
+    -fx-border-color: #cccccc;
     -fx-border-width: 1;
 }
 
