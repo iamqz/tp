@@ -52,7 +52,8 @@ public class CopyCommand extends Command {
             Resident resident = residents.get(i);
             sb.append(String.format("Name: %s%n", resident.getName()));
             sb.append(String.format("Phone: %s%n", resident.getPhone()));
-            sb.append(String.format("Unit Number: %s", resident.getUnitNumber()));
+            sb.append(String.format("Unit Number: %s%n", resident.getUnitNumber()));
+            sb.append(String.format("Role: %s", resident.getRole()));
 
             if (i < residents.size() - 1) {
                 sb.append("\n\n");
