@@ -181,6 +181,9 @@ public class SortCommand extends Command {
             this.displayName = displayName;
         }
 
+        /**
+         * Returns the human-readable name of this sort field for use in user-facing messages.
+         */
         public String getDisplayName() {
             return displayName;
         }
