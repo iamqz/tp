@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters, hyphens, commas, periods and spaces, " +
-                    "and it should not be blank";
+            "Names should only contain alphanumeric characters, hyphens, commas, periods and spaces, "
+                    + "and it should not be blank";
 
     /*
-     * The first character of the unit number must not be a whitespace,
+     * The first character of the unit number must not be a whitespace (Enforced with trim()),
      * otherwise " " (a blank string) becomes a valid input.
-     * Allows alphanumeric characters, spaces, and the symbols: / , - .
+     * Allows alphanumeric characters, spaces, and the symbols: , - .
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ,-.]*";
 

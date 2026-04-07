@@ -36,6 +36,9 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("James.")); // periods
+        assertTrue(Name.isValidName("James-")); // hyphens
+        assertTrue(Name.isValidName("James,")); // commas
     }
 
     @Test
