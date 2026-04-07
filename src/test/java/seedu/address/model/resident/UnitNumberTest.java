@@ -31,6 +31,9 @@ public class UnitNumberTest {
         // valid addresses
         assertTrue(UnitNumber.isValidUnitNumber("Blk 456, Den Road, #01-355"));
         assertTrue(UnitNumber.isValidUnitNumber("-")); // one character
+        assertTrue(UnitNumber.isValidUnitNumber("- ")); // one character with space
+        assertTrue(UnitNumber.isValidUnitNumber(" -")); // one character with space
+        assertTrue(UnitNumber.isValidUnitNumber(" - ")); // one character with space
         // long address
         assertTrue(UnitNumber.isValidUnitNumber("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA"));
     }
@@ -41,6 +44,15 @@ public class UnitNumberTest {
 
         // same values -> returns true
         assertTrue(unitNumber.equals(new UnitNumber("Valid UnitNumber")));
+
+        // same values with space-> returns true
+        assertTrue(unitNumber.equals(new UnitNumber(" Valid UnitNumber")));
+
+        // same values with space-> returns true
+        assertTrue(unitNumber.equals(new UnitNumber("Valid UnitNumber ")));
+
+        // same values with space-> returns true
+        assertTrue(unitNumber.equals(new UnitNumber(" Valid UnitNumber ")));
 
         // same object -> returns true
         assertTrue(unitNumber.equals(unitNumber));

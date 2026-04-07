@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
@@ -45,7 +48,11 @@ public class ResidentBuilder {
      * Sets the {@code Name} of the {@code Resident} that we are building.
      */
     public ResidentBuilder withName(String name) {
-        this.name = new Name(name);
+        // Ensure no trailing spaces and first letter is capitalised (every word)
+        String nameToStandard = Arrays.stream(name.trim().split("\\s+"))
+                .map(word -> word.substring(0, 1).toUpperCase() + word.substring(1))
+                .collect(Collectors.joining(" "));
+        this.name = new Name(nameToStandard);
         return this;
     }
 
@@ -53,7 +60,7 @@ public class ResidentBuilder {
      * Sets the {@code UnitNumber} of the {@code Resident} that we are building.
      */
     public ResidentBuilder withUnitNumber(String address) {
-        this.unitNumber = new UnitNumber(address);
+        this.unitNumber = new UnitNumber(address.trim());
         return this;
     }
 
@@ -61,7 +68,7 @@ public class ResidentBuilder {
      * Sets the {@code Phone} of the {@code Resident} that we are building.
      */
     public ResidentBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = new Phone(phone.trim());
         return this;
     }
 

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalResidents.ALICE;
 import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
@@ -71,7 +72,9 @@ public class AddressBookTest {
     @Test
     public void hasResident_residentWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addResident(ALICE);
-        Resident editedAlice = new ResidentBuilder(ALICE).withUnitNumber(VALID_ADDRESS_BOB).build();
+        // Non-Identify Fields are changed
+        Resident editedAlice = new ResidentBuilder(ALICE)
+                .withUnitNumber(VALID_ADDRESS_BOB).withRole(VALID_ROLE_AMY).build();
         assertTrue(addressBook.hasResident(editedAlice));
     }
 

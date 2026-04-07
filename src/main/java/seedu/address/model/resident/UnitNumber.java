@@ -27,14 +27,16 @@ public class UnitNumber {
     public UnitNumber(String unitNumber) {
         requireNonNull(unitNumber);
         checkArgument(isValidUnitNumber(unitNumber), MESSAGE_CONSTRAINTS);
-        value = unitNumber;
+        // remove leading and trailing space
+        value = unitNumber.trim();
     }
 
     /**
      * Returns true if a given string is a valid unit number.
      */
     public static boolean isValidUnitNumber(String test) {
-        return test.matches(VALIDATION_REGEX);
+        // test after removing leading and trailing spaces
+        return test.trim().matches(VALIDATION_REGEX);
     }
 
     @Override

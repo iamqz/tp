@@ -28,14 +28,40 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        fullName = formatName(name);
+    }
+
+    /**
+     * Format the name such that every first letter of every word is a capital letter.
+     * No leading and trailing space.
+     * Only 1 space between words.
+     * @param name Name given by user via input.
+     * @return Name that is being formatted correctly.
+     */
+    private String formatName(String name) {
+        // name should not be empty at this point!
+
+        String[] words = name.split("\\s+");
+        StringBuilder sb = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                sb.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1).toLowerCase())
+                        .append(" ");
+            }
+        }
+
+        // remove leading and trailing space
+        return sb.toString().trim();
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        // trim first
+        return test.trim().matches(VALIDATION_REGEX);
     }
 
 
@@ -56,6 +82,8 @@ public class Name {
         }
 
         Name otherName = (Name) other;
+
+        // Every first letter is capital (hence do not ignore case)
         return fullName.equals(otherName.fullName);
     }
 

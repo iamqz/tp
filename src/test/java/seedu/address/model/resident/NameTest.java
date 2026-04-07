@@ -45,6 +45,21 @@ public class NameTest {
         // same values -> returns true
         assertTrue(name.equals(new Name("Valid Name")));
 
+        // same values with spacing -> returns true
+        assertTrue(name.equals(new Name(" Valid Name ")));
+
+        // same values with more spacing -> returns true
+        assertTrue(name.equals(new Name(" Valid   Name ")));
+
+        // same values in different case -> returns true
+        assertTrue(name.equals(new Name("valid name")));
+
+        // same values in different case with spacing -> returns true
+        assertTrue(name.equals(new Name(" valid name ")));
+
+        // same values in different case with more spacing -> returns true
+        assertTrue(name.equals(new Name("  valid   name  ")));
+
         // same object -> returns true
         assertTrue(name.equals(name));
 

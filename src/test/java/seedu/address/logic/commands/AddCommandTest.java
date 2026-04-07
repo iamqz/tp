@@ -23,7 +23,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.resident.UnitNumber;
 import seedu.address.testutil.ResidentBuilder;
 
 public class AddCommandTest {
@@ -53,6 +55,29 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_RESIDENT, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicatePhone_throwsCommandException() {
+        Resident validResident = new ResidentBuilder().withPhone("98765432").build();
+        AddCommand addCommand = new AddCommand(validResident);
+        // Stub that specifically reports the phone is taken
+        // since no duplicate phone should be found
+        ModelStub modelStub = new ModelStubWithPhone(new Phone("98765432"));
+
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateUnitNumber_throwsCommandException() {
+        Resident validResident = new ResidentBuilder().withUnitNumber("01-01").build();
+        AddCommand addCommand = new AddCommand(validResident);
+        // Stub that specifically reports the unit is taken
+        ModelStub modelStub = new ModelStubWithUnitNumber(new UnitNumber("01-01"));
+
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_UNITNUMBER, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -174,6 +199,16 @@ public class AddCommandTest {
         public void resetSortedResidentsList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasPhone(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasUnitNumber(UnitNumber unitNumber) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -194,6 +229,65 @@ public class AddCommandTest {
         }
 
 
+    }
+
+    /**
+     * A Model stub that contains a specific phone number.
+     *
+     */
+    private class ModelStubWithPhone extends ModelStub {
+        private final Phone phone;
+
+        ModelStubWithPhone(Phone phone) {
+            requireNonNull(phone);
+            this.phone = phone;
+        }
+
+        @Override
+        public boolean hasPhone(Phone phone) {
+            requireNonNull(phone);
+            return this.phone.equals(phone); // Return true if it matches
+        }
+
+        @Override
+        public boolean hasUnitNumber(UnitNumber unitNumber) {
+            // to prevent assertion Error
+            return false;
+        }
+
+        @Override
+        public boolean hasResident(Resident resident) {
+            // to prevent assertion Error
+            return false;
+        }
+    }
+
+    /**
+     * A Model stub that contains a specific unitNumber.
+     */
+    private class ModelStubWithUnitNumber extends ModelStub {
+        private final UnitNumber unitNumber;
+
+        ModelStubWithUnitNumber(UnitNumber unitNumber) {
+            this.unitNumber = unitNumber;
+        }
+
+        @Override
+        public boolean hasUnitNumber(UnitNumber unitNumber) {
+            return this.unitNumber.equals(unitNumber);
+        }
+
+        @Override
+        public boolean hasPhone(Phone phone) {
+            // to prevent assertion Error
+            return false;
+        }
+
+        @Override
+        public boolean hasResident(Resident resident) {
+            // to prevent assertion Error
+            return false;
+        }
     }
 
     /**
@@ -218,6 +312,18 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+        @Override
+        public boolean hasPhone(Phone phone) {
+            return false;
+        }
+
+        @Override
+        public boolean hasUnitNumber(UnitNumber unitNumber) {
+            return false;
+        }
     }
+
+
 
 }
