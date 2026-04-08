@@ -138,7 +138,7 @@ Examples:
 Finds residents using prefixed search criteria.
 
 Format:
-* `find [n/NAME_KEYWORD]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`
+* `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`
 
 Rules:
 * Every search term must be prefixed.
@@ -170,7 +170,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
 ### Copying resident information : `copy`
 
@@ -183,7 +183,7 @@ Format: `copy`
 
 Examples:
 * `list` followed by `copy` copies all residents' information in the address book.
-* `find Betsy` followed by `copy` copies the information of all residents matching the search results.
+* `find n/Betsy` followed by `copy` copies the information of all residents matching the search results.
 
 ### Clearing all entries : `clear`
 
@@ -248,7 +248,7 @@ Action     | Format, Examples
 **Copy**   | `copy`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find [n/NAME_KEYWORD]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`<br> e.g., `find n/James n/Jake`, `find n/James p/2222 u/02-25 r/HA`
+**Find**   | `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`<br> e.g., `find n/James n/Jake`, `find n/James p/2222 u/02-25 r/HA`
 **List**   | `list`
 **Help**   | `help`
 **Sort**   | `sort FIELD`<br> e.g., `sort name`

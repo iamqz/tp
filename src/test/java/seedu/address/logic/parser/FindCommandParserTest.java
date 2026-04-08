@@ -53,6 +53,12 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_invalidPrefixBeforeValidField_throwsParseException() {
+        assertParseFailure(parser, "x/Alice n/Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_emptyNameField_throwsParseException() {
         assertParseFailure(parser, "n/",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

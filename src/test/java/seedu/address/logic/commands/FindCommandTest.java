@@ -19,13 +19,13 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.FindCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 import seedu.address.model.resident.Role;
-import seedu.address.logic.parser.FindCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
