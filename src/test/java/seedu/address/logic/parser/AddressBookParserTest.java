@@ -103,6 +103,31 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_caseInsensitiveCommandWords() throws Exception {
+        Resident resident = new ResidentBuilder().build();
+        EditCommand.EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(resident).build();
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+
+        assertEquals(new AddCommand(resident),
+                parser.parseCommand("AdD " + ResidentUtil.getResidentDetails(resident)));
+        assertTrue(parser.parseCommand("ClEaR") instanceof ClearCommand);
+        assertTrue(parser.parseCommand("CoPy") instanceof CopyCommand);
+        assertEquals(new DeleteCommand(INDEX_FIRST_RESIDENT),
+                parser.parseCommand("DeLeTe " + INDEX_FIRST_RESIDENT.getOneBased()));
+        assertEquals(new EditCommand(INDEX_FIRST_RESIDENT, descriptor),
+                parser.parseCommand("EdIt " + INDEX_FIRST_RESIDENT.getOneBased() + " "
+                        + ResidentUtil.getEditResidentDescriptorDetails(descriptor)));
+        assertTrue(parser.parseCommand("ExIt") instanceof ExitCommand);
+        assertEquals(new FindCommand(new ResidentMatchesFindPredicate(keywords, List.of(), List.of())),
+                parser.parseCommand("FiNd "
+                        + keywords.stream().map(keyword -> "n/" + keyword).collect(Collectors.joining(" "))));
+        assertTrue(parser.parseCommand("HeLp") instanceof HelpCommand);
+        assertTrue(parser.parseCommand("LiSt") instanceof ListCommand);
+        assertEquals(new SortCommand(SortCommand.SortField.NAME),
+                parser.parseCommand("SoRt name"));
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
