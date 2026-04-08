@@ -29,8 +29,10 @@ Example: edit 1 p/91234567 u/03-14
 find: Finds residents using prefixed search criteria.
 Format: find [n/NAME_KEYWORD]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...
 Note: Every search term must be prefixed.
+Note: Use r/unassigned to find residents with no role.
 Example 1: find n/alice n/bob
 Example 2: find n/alice p/9876 u/02-25 r/HA
+Example 3: find r/unassigned
 
 sort: Sorts the displayed list of residents by the specified field.
 Format: sort FIELD

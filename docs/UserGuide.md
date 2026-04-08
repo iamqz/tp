@@ -146,6 +146,7 @@ Rules:
 * `p/` matches phone numbers by substring.
 * `u/` matches unit numbers by case-insensitive substring.
 * `r/` matches resident roles exactly.
+* Use `r/unassigned` to match residents with no role.
 * Multiple search terms within the same field are combined using `OR`.
 * Different fields are combined using `AND`.
 * Unprefixed text is invalid.
@@ -156,6 +157,7 @@ Examples:
 * `find p/9876` returns residents whose phone numbers contain `9876`
 * `find u/02-25` returns residents whose unit numbers contain `02-25`
 * `find r/HA` returns residents whose role is `HA`
+* `find r/unassigned` returns residents with no role assigned
 * `find n/Alex p/9876 u/02-25 r/HA` returns residents matching all specified field criteria
 
 ### Deleting a resident : `delete`
@@ -248,7 +250,7 @@ Action     | Format, Examples
 **Copy**   | `copy`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`<br> e.g., `find n/James n/Jake`, `find n/James p/2222 u/02-25 r/HA`
+**Find**   | `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`<br> e.g., `find n/James n/Jake`, `find n/James p/2222 u/02-25 r/HA`, `find r/unassigned`
 **List**   | `list`
 **Help**   | `help`
 **Sort**   | `sort FIELD`<br> e.g., `sort name`

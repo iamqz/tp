@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -85,6 +86,14 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidRoleField_throwsParseException() {
         assertParseFailure(parser, "r/INVALID-ROLE", Role.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_unassignedRoleAlias_returnsFindCommand() {
+        FindCommand expectedFindCommand = new FindCommand(new ResidentMatchesFindPredicate(
+                List.of(), List.of(), List.of(), List.of(Role.NONE)));
+
+        assertParseSuccess(parser, "r/unassigned", expectedFindCommand);
     }
 
 }
