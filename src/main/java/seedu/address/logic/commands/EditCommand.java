@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_RESIDENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_UNITNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -35,15 +38,16 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PHONE + "PHONE_NUMBER] "
             + "[" + PREFIX_UNIT_NUMBER + "UNIT_NUMBER] "
-            + "[" + PREFIX_ROLE + "ROLE]...\n"
+            + "[" + PREFIX_ROLE + "ROLE]\n"
+            + "Role values: HA, FH, RA, NONE\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567";
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_ROLE + "NONE";
 
     public static final String MESSAGE_EDIT_RESIDENT_SUCCESS = "Edited Resident: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book.";
 
     private final Index index;
     private final EditResidentDescriptor editResidentDescriptor;
@@ -72,8 +76,21 @@ public class EditCommand extends Command {
         Resident residentToEdit = lastShownList.get(index.getZeroBased());
         Resident editedResident = createEditedResident(residentToEdit, editResidentDescriptor);
 
+        // Overall checking
         if (!residentToEdit.isSameResident(editedResident) && model.hasResident(editedResident)) {
             throw new CommandException(MESSAGE_DUPLICATE_RESIDENT);
+        }
+
+        // Check for duplicate in phone number
+        if (!residentToEdit.getPhone().equals(editedResident.getPhone())
+                && model.hasPhone(editedResident.getPhone())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        // Check for duplicate in unitNumber
+        if (!residentToEdit.getUnitNumber().equals(editedResident.getUnitNumber())
+                && model.hasUnitNumber(editedResident.getUnitNumber())) {
+            throw new CommandException(MESSAGE_DUPLICATE_UNITNUMBER);
         }
 
         model.setResident(residentToEdit, editedResident);
@@ -135,7 +152,7 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of each edited field is used internally.
          */
         public EditResidentDescriptor(EditResidentDescriptor toCopy) {
             setName(toCopy.name);

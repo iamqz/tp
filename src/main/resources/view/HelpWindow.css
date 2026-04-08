@@ -2,6 +2,12 @@
     -fx-text-fill: white;
 }
 
-#helpMessageContainer {
+#helpMessageContainer,
+.scroll-pane,
+.scroll-pane > .viewport {
     -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#helpMessageContainer {
+    -fx-padding: 0;
 }

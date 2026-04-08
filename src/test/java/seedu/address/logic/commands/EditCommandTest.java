@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_RESIDENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_UNITNUMBER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -107,7 +110,7 @@ public class EditCommandTest {
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(firstResident).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_RESIDENT, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RESIDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_RESIDENT);
     }
 
     @Test
@@ -119,7 +122,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENT,
                 new EditResidentDescriptorBuilder(residentInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RESIDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_RESIDENT);
     }
 
     @Test
@@ -146,6 +149,32 @@ public class EditCommandTest {
                 new EditResidentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicatePhoneOtherResident_failure() {
+        Resident firstResident = model.getFilteredResidentList().get(INDEX_FIRST_RESIDENT.getZeroBased());
+        Resident secondResident = model.getFilteredResidentList().get(INDEX_SECOND_RESIDENT.getZeroBased());
+
+        // Attempt to edit the first resident to have the second resident's phone number
+        EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(firstResident)
+                .withPhone(secondResident.getPhone().value).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENT, descriptor);
+
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PHONE);
+    }
+
+    @Test
+    public void execute_duplicateUnitNumberOtherResident_failure() {
+        Resident firstResident = model.getFilteredResidentList().get(INDEX_FIRST_RESIDENT.getZeroBased());
+        Resident secondResident = model.getFilteredResidentList().get(INDEX_SECOND_RESIDENT.getZeroBased());
+
+        // Attempt to edit the first resident to have the second resident's unitNumber
+        EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(firstResident)
+                .withUnitNumber(secondResident.getUnitNumber().value).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENT, descriptor);
+
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_UNITNUMBER);
     }
 
     @Test

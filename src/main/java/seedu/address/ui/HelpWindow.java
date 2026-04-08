@@ -13,49 +13,74 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String COMMAND_LIST_MESSAGE = """
-Available commands:
+Available commands
 
 add: Adds a resident to the address book.
-Format: add n/NAME p/PHONE_NUMBER u/UNIT_NUMBER
-Example: add n/John Doe p/98765432 u/02-25
+  Format:
+    add n/NAME p/PHONE_NUMBER u/UNIT_NUMBER [r/ROLE]
+  Note:
+    ROLE may be HA, FH, RA, or NONE.
+  Example:
+    add n/John Doe p/98765432 u/02-25 r/HA
 
 list: Shows all residents and resets any active sort.
-Format: list
-
-edit: Edits an existing resident by index.
-Format: edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NUMBER]
-Example: edit 1 p/91234567 u/03-14
-
-find: Finds residents using prefixed search criteria.
-Format: find [n/NAME_KEYWORD]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...
-Note: Every search term must be prefixed.
-Note: Use r/unassigned to find residents with no role.
-Example 1: find n/alice n/bob
-Example 2: find n/alice p/9876 u/02-25 r/HA
-Example 3: find r/unassigned
+  Format:
+    list
 
 sort: Sorts the displayed list of residents by the specified field.
-Format: sort FIELD
-Fields: name, phone, unit
-Example: sort name
+  Format:
+    sort FIELD
+  Fields:
+    name, phone, unit, role
+  Example:
+    sort role
+
+edit: Edits an existing resident by index.
+  Format:
+    edit INDEX [n/NAME] [p/PHONE_NUMBER] [u/UNIT_NUMBER] [r/ROLE]
+  Note:
+    Use r/NONE to remove an assigned role.
+  Example:
+    edit 1 p/91234567 u/03-14
+
+find: Finds residents using either name keywords or fielded criteria.
+  Format:
+    find [n/NAME]... [p/PHONE_NUMBER]...
+         [u/UNIT_NUMBER]...[r/ROLE]
+  Note:
+    Once you use a prefix, every search term must be prefixed.
+  Examples:
+    find alex david
+    find n/alex n/david p/9876 u/02-25
 
 delete: Deletes a resident by index.
-Format: delete INDEX
-Example: delete 2
+  Format:
+    delete INDEX
+  Example:
+    delete 2
+
+copy: Copies all currently displayed residents to the clipboard.
+  Format:
+    copy
 
 clear: Deletes all residents from the address book.
-Format: clear
+  Format:
+    clear
 
 help: Shows this command list.
-Format: help
+  Format:
+    help
 
 exit: Exits the application.
-Format: exit""";
+  Format:
+    exit""";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
     private Label helpMessage;
+
+
 
     /**
      * Creates a new HelpWindow.

@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_RESIDENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_UNITNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -22,20 +25,17 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a resident to the list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_PHONE + "PHONE_NUMBER "
             + PREFIX_UNIT_NUMBER + "UNIT_NUMBER "
             + "[" + PREFIX_ROLE + "ROLE]\n"
+            + "Role values: HA, FH, RA, NONE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_UNIT_NUMBER + "26/1/A "
+            + PREFIX_UNIT_NUMBER + "02-25 "
             + PREFIX_ROLE + "HA";
 
     public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the list";
-    public static final String MESSAGE_DUPLICATE_PHONE = "A resident with this phone number already exists in the list";
-    public static final String MESSAGE_DUPLICATE_UNITNUMBER =
-            "A resident with this unit number already exists in the list";
 
     private final Resident toAdd;
 

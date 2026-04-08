@@ -31,14 +31,14 @@ It allows users to quickly **add, remove, and view residents** in a locally stor
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all residents.
    * `sort name` : Sorts the displayed list of residents by name.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 u/02-25 r/HA` : Adds a resident named `John Doe` in unit `02-25` with the `HA` role.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd resident shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all residents.
 
    * `exit` : Exits the app.
 
@@ -56,13 +56,19 @@ It allows users to quickly **add, remove, and view residents** in a locally stor
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `add n/NAME p/PHONE_NUMBER u/UNIT_NUMBER [r/ROLE]` can be used as
+  `add n/John Doe p/98765432 u/02-25 r/HA` or as `add n/John Doe p/98765432 u/02-25`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. in the fielded form of `find`, `[n/NAME]...` can be omitted entirely, used once as
+  `find n/Alex`, or repeated as `find n/Alex n/David`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER u/UNIT_NUMBER`,
+  `u/UNIT_NUMBER p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Roles use the `r/` prefix. Valid role values are `HA`, `FH`, `RA`, and `NONE`.<br>
+  `NONE` is especially useful with `edit` when you want to remove an assigned role.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -83,16 +89,16 @@ Format: `help`
 
 Adds a resident to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER u/UNIT_NUMBER [r/ROLE]`
 
 <box type="tip" seamless>
 
-**Tip:** A resident can have any number of tags (including 0)
+**Tip:** `ROLE` is optional. If provided, it must be one of `HA`, `FH`, `RA`, or `NONE`.
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 u/02-25`
+* `add n/Jane Tan p/91234567 u/05-12 r/FH`
 
 ### Listing all residents : `list`
 
@@ -107,7 +113,7 @@ Sorts the displayed list of residents by the specified field.
 
 Format: `sort FIELD`
 
-* `FIELD` must be one of `name`, `phone`, or `unit`.
+* `FIELD` must be one of `name`, `phone`, `unit`, or `role`.
 * Sorting affects the currently displayed list of residents.
 * `list` resets the displayed order back to the default order.
 
@@ -115,23 +121,23 @@ Examples:
 * `sort name`
 * `sort phone`
 * `sort unit`
+* `sort role`
 
 ### Editing a resident : `edit`
-``
+
 Edits an existing resident in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NUMBER] [r/ROLE]`
 
 * Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed resident list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
-* You can remove all the resident’s tags by typing `t/` without
-    specifying any tags after it.
+* If `ROLE` is provided, it must be one of `HA`, `FH`, `RA`, or `NONE`.
+* Use `r/NONE` to remove an assigned role.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st resident to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd resident to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567 u/03-14` edits the phone number and unit number of the 1st resident.
+* `edit 2 n/Jane Tan r/NONE` edits the name of the 2nd resident and removes the resident's assigned role.
 
 ### Locating residents: `find`
 
@@ -163,7 +169,7 @@ Examples:
 
 ### Deleting a resident : `delete`
 
-Deletes the specified resident from the address book.
+Deletes the specified resident from the resident list.
 
 Format: `delete INDEX`
 
@@ -182,7 +188,7 @@ Copies all the displayed resident information to your device's clipboard.
 Format: `copy`
 
 * Copies all available resident information currently displayed.
-* The copied information includes the names, phone numbers, emails, addresses, and tags of all residents in the current view.
+* The copied information includes the names, phone numbers, unit numbers, and roles of all residents in the current view.
 
 Examples:
 * `list` followed by `copy` copies all residents' information in the address book.
@@ -190,7 +196,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the resident list.
 
 Format: `clear`
 
@@ -246,7 +252,7 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER u/UNIT_NUMBER [r/ROLE]` <br> e.g., `add n/James Ho p/22224444 u/02-25 r/HA`
 **Clear**  | `clear`
 **Copy**   | `copy`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
@@ -254,4 +260,6 @@ Action     | Format, Examples
 **Find**   | `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`<br> e.g., `find n/James n/Jake`, `find n/James p/2222 u/02-25 r/HA`, `find r/unassigned`
 **List**   | `list`
 **Help**   | `help`
-**Sort**   | `sort FIELD`<br> e.g., `sort name`
+**List**   | `list`
+**Sort**   | `sort FIELD`<br> e.g., `sort role`
+**Exit**   | `exit`

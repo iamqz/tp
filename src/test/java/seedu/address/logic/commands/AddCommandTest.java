@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_RESIDENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_UNITNUMBER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalResidents.ALICE;
 
@@ -54,7 +57,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithResident(validResident);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_RESIDENT, () -> addCommand.execute(modelStub));
+                MESSAGE_DUPLICATE_RESIDENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -66,7 +69,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPhone(new Phone("98765432"));
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
+                MESSAGE_DUPLICATE_PHONE, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -77,7 +80,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithUnitNumber(new UnitNumber("01-01"));
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_UNITNUMBER, () -> addCommand.execute(modelStub));
+                MESSAGE_DUPLICATE_UNITNUMBER, () -> addCommand.execute(modelStub));
     }
 
     @Test
