@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_RESIDENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_UNITNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -32,10 +35,6 @@ public class AddCommand extends Command {
             + PREFIX_ROLE + "HA";
 
     public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the list";
-    public static final String MESSAGE_DUPLICATE_PHONE = "A resident with this phone number already exists in the list";
-    public static final String MESSAGE_DUPLICATE_UNITNUMBER =
-            "A resident with this unit number already exists in the list";
 
     private final Resident toAdd;
 

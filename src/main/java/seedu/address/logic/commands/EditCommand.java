@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_PHONE;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_RESIDENT;
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_UNITNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -43,9 +46,6 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_RESIDENT_SUCCESS = "Edited Resident: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RESIDENT = AddCommand.MESSAGE_DUPLICATE_RESIDENT;
-    public static final String MESSAGE_DUPLICATE_PHONE = AddCommand.MESSAGE_DUPLICATE_PHONE;
-    public static final String MESSAGE_DUPLICATE_UNITNUMBER = AddCommand.MESSAGE_DUPLICATE_UNITNUMBER;
 
     private final Index index;
     private final EditResidentDescriptor editResidentDescriptor;

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.Messages.MESSAGE_DUPLICATE_RESIDENT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
@@ -42,7 +43,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicateResident_throwsCommandException() {
         Resident residentInList = model.getAddressBook().getResidentList().get(0);
         assertCommandFailure(new AddCommand(residentInList), model,
-                AddCommand.MESSAGE_DUPLICATE_RESIDENT);
+                MESSAGE_DUPLICATE_RESIDENT);
     }
 
 }

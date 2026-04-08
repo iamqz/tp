@@ -23,6 +23,13 @@ public class Messages {
             "Find command cannot mix prefixed and unprefixed search terms. "
                     + "Use either unprefixed name keywords only, or prefix every search term with n/, p/, or u/.";
 
+    // More for AddCommand and EditCommand (since used in both; they are placed here instead)
+    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the list";
+    public static final String MESSAGE_DUPLICATE_PHONE = "A resident with this phone number already exists in the list";
+    public static final String MESSAGE_DUPLICATE_UNITNUMBER =
+            "A resident with this unit number already exists in the list";
+
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
