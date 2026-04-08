@@ -51,7 +51,7 @@ public class InputHistoryManager {
             return null;
         }
 
-        // Otherwise, exiting input-history retrieval mode
+        // Otherwise, exit input-history retrieval mode
         if (currentIndex == inputHistory.size()) {
             return "";
         }
@@ -71,7 +71,7 @@ public class InputHistoryManager {
         if (inputHistory.isEmpty() || !input.equals(inputHistory.get(inputHistory.size() - 1))) {
             inputHistory.add(input);
         }
-        currentIndex = inputHistory.size();
+        exitHistoryMode();
     }
 
     /**

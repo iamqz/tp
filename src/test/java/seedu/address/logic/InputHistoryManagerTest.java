@@ -89,4 +89,21 @@ public class InputHistoryManagerTest {
 
         assertEquals("find c", historyManager.retrieveEarlierPastInput());
     }
+
+    @Test
+    public void exitHistoryMode_afterNavigating_resetsIndexToLatestInput() {
+        InputHistoryManager historyManager = new InputHistoryManager();
+        historyManager.addToHistory("find a");
+        historyManager.addToHistory("find b");
+        historyManager.addToHistory("find c");
+
+        // Navigating through history
+        assertEquals("find c", historyManager.retrieveEarlierPastInput());
+        assertEquals("find b", historyManager.retrieveEarlierPastInput());
+
+        // Mimicking complete clearing of input (e.g. ctrl+a > backspace, or executing a new input
+        historyManager.exitHistoryMode();
+        assertEquals("find c", historyManager.retrieveEarlierPastInput());
+    }
+
 }
