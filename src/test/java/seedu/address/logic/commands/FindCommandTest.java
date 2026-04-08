@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalResidents.ALICE;
 import static seedu.address.testutil.TypicalResidents.BENSON;
 import static seedu.address.testutil.TypicalResidents.CARL;
 import static seedu.address.testutil.TypicalResidents.DANIEL;
 import static seedu.address.testutil.TypicalResidents.ELLE;
 import static seedu.address.testutil.TypicalResidents.FIONA;
 import static seedu.address.testutil.TypicalResidents.GEORGE;
-import static seedu.address.testutil.TypicalResidents.ALICE;
 import static seedu.address.testutil.TypicalResidents.getTypicalAddressBook;
 
 import java.util.Arrays;

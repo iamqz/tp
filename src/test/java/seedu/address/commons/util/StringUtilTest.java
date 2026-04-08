@@ -127,8 +127,8 @@ public class StringUtilTest {
 
     @Test
     public void containsFuzzyWordIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> StringUtil.containsFuzzyWordIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.containsFuzzyWordIgnoreCase("typical sentence", null));
     }
 
     @Test
@@ -185,8 +185,8 @@ public class StringUtilTest {
 
     @Test
     public void containsPartialOrFuzzyWordIgnoreCase_nullWord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> StringUtil.containsPartialOrFuzzyWordIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.containsPartialOrFuzzyWordIgnoreCase("typical sentence", null));
     }
 
     @Test
