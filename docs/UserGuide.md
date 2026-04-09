@@ -148,7 +148,8 @@ Format:
 
 Rules:
 * Every search term must be prefixed.
-* `n/` matches resident names as case-insensitive full words.
+* `n/` matches resident names word-by-word, case-insensitively, using partial matching.
+* `n/` also tolerates up to one insertion, deletion, or substitution in a name word.
 * `p/` matches phone numbers by substring.
 * `u/` matches unit numbers by case-insensitive substring.
 * `r/` matches resident roles exactly.
@@ -159,8 +160,10 @@ Rules:
   e.g. `find 9876 n/Bob` and `find n/Alex Bob` are not allowed
 
 Examples:
-* `find n/John` returns residents whose names contain the full word `John`
-* `find n/Alex n/David` returns residents whose names contain either the full word `Alex` OR `David`
+* `find n/John` returns residents whose names contain a word matching `John`
+* `find n/Al` can match residents named `Alex Tan` or `Alice Pauline`
+* `find n/Karl` can match a resident named `Carl Kurz`
+* `find n/Alex n/David` returns residents whose names contain either a word matching `Alex` OR `David`
 * `find p/9876` returns residents whose phone numbers contain `9876`
 * `find u/02-25` returns residents whose unit numbers contain `02-25`
 * `find r/HA` returns residents whose role is `HA`
