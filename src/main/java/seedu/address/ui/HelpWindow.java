@@ -43,14 +43,17 @@ edit: Edits an existing resident by index.
   Example:
     edit 1 p/91234567 u/03-14
 
-find: Finds residents using either name keywords or fielded criteria.
+find: Finds residents using prefixed search criteria.
   Format:
     find [n/NAME]... [p/PHONE_NUMBER]...
          [u/UNIT_NUMBER]...[r/ROLE]
   Note:
-    Once you use a prefix, every search term must be prefixed.
+    Every search term must be prefixed.
+    n/ matches name words case-insensitively using partial matching.
+    It also tolerates up to one insertion, deletion, or substitution.
   Examples:
-    find alex david
+    find n/al
+    find n/karl
     find n/alex n/david p/9876 u/02-25
 
 delete: Deletes a resident by index.

@@ -8,7 +8,7 @@
 
 **QuickLookup** is a desktop application for managing a list of residents, optimized for users who prefer fast keyboard input via a **Command Line Interface (CLI)** while still providing a **Graphical User Interface (GUI)** for visual feedback.
 
-It allows users to quickly **add, remove, and view residents** in a locally stored list.
+It allows users to quickly **view and manage residents** in a locally stored list while providing **useful features** to quicken this process.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -148,7 +148,8 @@ Format:
 
 Rules:
 * Every search term must be prefixed.
-* `n/` matches resident names as case-insensitive full words.
+* `n/` matches resident names word-by-word, case-insensitively, using partial matching.
+* `n/` also tolerates up to one insertion, deletion, or substitution in a name word.
 * `p/` matches phone numbers by substring.
 * `u/` matches unit numbers by case-insensitive substring.
 * `r/` matches resident roles exactly.
@@ -159,8 +160,10 @@ Rules:
   e.g. `find 9876 n/Bob` and `find n/Alex Bob` are not allowed
 
 Examples:
-* `find n/John` returns residents whose names contain the full word `John`
-* `find n/Alex n/David` returns residents whose names contain either the full word `Alex` OR `David`
+* `find n/John` returns residents whose names contain a word matching `John`
+* `find n/Al` can match residents named `Alex Tan` or `Alice Pauline`
+* `find n/Karl` can match a resident named `Carl Kurz`
+* `find n/Alex n/David` returns residents whose names contain either a word matching `Alex` OR `David`
 * `find p/9876` returns residents whose phone numbers contain `9876`
 * `find u/02-25` returns residents whose unit numbers contain `02-25`
 * `find r/HA` returns residents whose role is `HA`
@@ -227,7 +230,15 @@ QuickLookup tracks your current session's command history for quick retrieval us
 
 While the command box is focused, press:
 - Up Arrow Key (`↑`) to display earlier commands.
+  - If you are already at the earliest command or there is no history, the Up Arrow Key brings the cursor to the front of the Command Box
 - Down Arrow Key (`↓`) to display more recent commands.
+  - If you are already at the latest command in history, the Down Arrow Key clears the Command Box.
+  - If you are already at the present, the Down Arrow Key brings the cursor to the end of the Command Box.
+
+While editing the currently displayed past input:
+- Navigation position in history is maintained. That is, despite editing, pressing:
+  - Up Arrow Key (`↑`) will still navigate to the command directly earlier (if available).
+  - Down Arrow Key (`↓`) will still navigate to the command directly more recent (if available).
 
 ### Archiving data files `[coming in v2.0]`
 
