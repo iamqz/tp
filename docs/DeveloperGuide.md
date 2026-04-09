@@ -338,16 +338,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests for the list of Residents.
-2.  System displays the list of Residents.
+2.  System displays all Residents, clearing any active search filter and restoring the default list order.
 
-    Use case ends.
+     Use case ends.
 
 **Extensions**
 
 * 2a. System has no Residents to display.
-    * 2a1. System prompt User with a message to indicate that the list of Residents is empty.
+    * 2a1. System prompts User with a message to indicate that the list of Residents is empty.
 
-      Use case ends.
+       Use case ends.
 
 <br>
 
@@ -357,22 +357,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User adds the information via the command line for the new Resident.
-2. System adds the new Resident.
-3. System saves the new Resident to the list of Residents (Storage).
-4. System displays the updated list of Residents (UC2).
+1. User enters the new Resident's information via the command line, optionally including a role.
+2. System validates the entered information.
+3. System checks that the new Resident does not duplicate an existing Resident, phone number, or unit number.
+4. System adds the new Resident to the list of Residents.
+5. System saves the updated list of Residents to Storage.
+6. System displays the updated list of Residents.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. System detects invalid or missing inputs.
-    * 1a1. System prompts User with a message of the error.
-    * 1a2. User reenters the information and resubmits via the command line.
+* 3a. There is missing or invalid entered information.
+    * 3a1. System prompts User with a message of the error.
+    * 3a2. User reenters the information and resubmits via the command line.
+    * 3a3. System validates the entered information.
 
-      Steps 1a1-1a2 are repeated until the information entered is correct.
+      Steps 3a1-3a3 are repeated until the information entered is correct.
 
-      Use case resumes from step 2.
+      Use case resumes from step 4.
+
+* 3b. The new Resident would duplicate an existing Resident, phone number, or unit number.
+    * 3b1. System prompts User with a message of the error.
+    * 3b2. User reenters the information and resubmits via the command line.
+    * 3b3. System validates the entered information.
+    * 3b4. System checks that the new Resident does not duplicate an existing Resident, phone number, or unit number.
+
+      Steps 3b1-3b4 are repeated until the information entered is valid and unique.
+
+      Use case resumes from step 4.
 
 <br>
 
@@ -413,7 +426,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. User has applied a search filter using find command.
-    * 1a1. System copies only the residents matching the search results to the device's clipboard.
+    * 1a1. User requests to copy resident information.
+    * 1a2. System copies only the residents matching the search results to the device's clipboard.
     
       Use case resumes from step 4.
 
@@ -427,7 +441,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to navigate to an earlier input.
 2. System displays the earlier input.
 
-    Steps 1 and 2 are repeated as long as the user continues to request to navigate to an earlier input.
+    Steps 1-2 are repeated as long as the user continues to request to navigate to an earlier input.
 
    Use case ends.
 
@@ -452,7 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to navigate to a later input.
 2. System displays the later input.
 
-   Steps 1 and 2 are repeated as long as the user continues to request to navigate to a later input.
+   Steps 1-2 are repeated as long as the user continues to request to navigate to a later input.
 
    Use case ends.
 
@@ -464,6 +478,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. User is already at the latest input.
     * 1b1. System exits input history navigation.
+
+       Use case ends.
+
+<br>
+
+**Use Case: UC8 - Find Residents by Criteria**
+
+**Precondition: User has started the application**
+
+**MSS**
+1. User enters one or more prefixed search criteria.
+2. System validates the search criteria.
+3. System filters the list of Residents to those matching the specified criteria.
+4. System displays the filtered list of matching Residents.
+
+   Use case ends.
+
+**Extensions**
+* 3a. The search criteria are invalid, missing, or unprefixed.
+    * 3a1. System prompts User with a message of the error.
+    * 3a2. User reenters the search criteria and resubmits via command line.
+    * 3a3. System validates the search criteria.
+
+      Steps 3a1-3a3 are repeated until the search criteria entered are valid.
+
+      Use case resumes from step 3.
+
+* 4a. No Residents match the specified criteria.
+    * 4a1. System displays an empty filtered list.
+    * 4a2. System displays a message indicating that no Residents were found.
+
+      Use case ends.
+
+<br>
+
+**Use Case: UC9 - Sort the Displayed Resident List**
+
+**Precondition: User has started the application**
+
+**MSS**
+1. User requests to sort the currently displayed list of Residents by a specified field.
+2. System validates the sort field.
+3. System sorts the currently displayed list of Residents by the specified field.
+4. System displays the sorted list of Residents.
+
+   Use case ends.
+
+**Extensions**
+* 3a. The sort field is invalid or missing.
+    * 3a1. System prompts User with a message of the error.
+    * 3a2. User reenters the sort command and resubmits via command line.
+    * 3a3. System validates the sort field.
+
+      Steps 3a1-3a3 are repeated until the sort field entered is valid.
+
+      Use case resumes from step 3.
+
+* 3b. No Residents are currently displayed.
+    * 3b1. System prompts User with a message indicating that there are no Residents to sort.
 
       Use case ends.
 
