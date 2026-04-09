@@ -20,7 +20,7 @@ It allows users to quickly **view and manage residents** in a locally stored lis
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103-T11-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your QuickLookup.
 
@@ -91,9 +91,11 @@ Adds a resident to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER u/UNIT_NUMBER [r/ROLE]`
 
+* `PHONE_NUMBER` and `UNIT_NUMBER` must each be unique across residents.
+
 <box type="tip" seamless>
 
-**Tip:** `ROLE` is optional. If provided, it must be one of `HA`, `FH`, `RA`, or `NONE/unassigned`. (`ROLE` defaults to `NONE` if not used)
+**Tip:** `ROLE` is optional. If provided, it must be one of `HA`, `FH`, `RA`, or `NONE`. (`ROLE` defaults to `NONE` if not used)
 </box>
 
 Examples:
@@ -115,6 +117,7 @@ Format: `sort FIELD`
 
 * `FIELD` must be one of `name`, `phone`, `unit`, or `role`.
 * Sorting affects the currently displayed list of residents.
+* `sort role` orders residents by role precedence: `HA`, `FH`, `RA`, then residents without a role.
 * `list` resets the displayed order back to the default order.
 
 Examples:
@@ -132,6 +135,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NUMBER] [r/ROLE]`
 * Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed resident list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* The updated `PHONE` and `UNIT_NUMBER` must not duplicate another resident's values.
 * If `ROLE` is provided, it must be one of `HA`, `FH`, or `RA`.
 * Use `r/unassigned` to remove an assigned role.
 
@@ -156,6 +160,7 @@ Rules:
 * Use `r/unassigned` to match residents with no role.
 * Multiple search terms within the same field are combined using `OR`.
 * Different fields are combined using `AND`.
+* Each `n/` search term can contain only one word; `find n/John Doe` is invalid.
 * Unprefixed text is invalid.
   e.g. `find 9876 n/Bob` and `find n/Alex Bob` are not allowed
 
@@ -268,10 +273,9 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Copy**   | `copy`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [u/UNIT_NUMBER] [r/ROLE] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`<br> e.g., `find n/James n/Jake`, `find n/James p/2222 u/02-25 r/HA`, `find r/unassigned`
 **List**   | `list`
 **Help**   | `help`
-**List**   | `list`
 **Sort**   | `sort FIELD`<br> e.g., `sort role`
 **Exit**   | `exit`
