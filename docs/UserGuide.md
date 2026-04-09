@@ -70,7 +70,7 @@ It allows users to quickly **add, remove, and view residents** in a locally stor
 * Roles use the `r/` prefix. Valid role values are `HA`, `FH`, `RA`, and `NONE`.<br>
   `NONE` is especially useful with `edit` when you want to remove an assigned role.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored with the exception of `copy`, so as to avoid misleading usage.<br> (e.g. `copy 1` does not copy the first resident in the index)<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -93,7 +93,7 @@ Format: `add n/NAME p/PHONE_NUMBER u/UNIT_NUMBER [r/ROLE]`
 
 <box type="tip" seamless>
 
-**Tip:** `ROLE` is optional. If provided, it must be one of `HA`, `FH`, `RA`, or `NONE`.
+**Tip:** `ROLE` is optional. If provided, it must be one of `HA`, `FH`, `RA`, or `NONE/unassigned`. (`ROLE` defaults to `NONE` if not used)
 </box>
 
 Examples:
@@ -132,12 +132,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NUMBER] [r/ROLE]`
 * Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed resident list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* If `ROLE` is provided, it must be one of `HA`, `FH`, `RA`, or `NONE`.
-* Use `r/NONE` to remove an assigned role.
+* If `ROLE` is provided, it must be one of `HA`, `FH`, or `RA`.
+* Use `r/unassigned` to remove an assigned role.
 
 Examples:
 * `edit 1 p/91234567 u/03-14` edits the phone number and unit number of the 1st resident.
-* `edit 2 n/Jane Tan r/NONE` edits the name of the 2nd resident and removes the resident's assigned role.
+* `edit 2 n/Jane Tan r/unassigned` edits the name of the 2nd resident and removes the resident's assigned role.
 
 ### Locating residents: `find`
 
