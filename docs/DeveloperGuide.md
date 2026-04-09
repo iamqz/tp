@@ -860,37 +860,62 @@ Prerequisites for all test cases below: Launch the application with the sample d
 
 ### Deleting a resident
 
+Prerequisites for all test cases below: Launch the application with the sample data loaded. Enter `list` so that
+multiple residents are displayed in the resident list.
+
 1. Deleting a resident while all residents are being shown
 
-   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
-
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: The first resident is deleted from the list. Details of the deleted resident are shown in the
+      status message.
+      <br><br>
+
+1. Deleting a resident with an invalid index
 
    1. Test case: `delete 0`<br>
-      Expected: No resident is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No resident is deleted. Error details are shown in the status message.
+      <br><br>
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+1. Deleting a resident with other invalid inputs
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `delete 999`<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Copying resident information
 
+Prerequisites for test case 1 below: Launch the application with the sample data loaded. Enter `list` so that
+multiple residents are displayed in the resident list.
+
 1. Copying all resident information while showing residents
 
-   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+   1. Test case: `copy`<br>
+      Expected: All displayed residents' information is copied to the clipboard. A confirmation message is shown in
+      the status message.
+      <br><br>
+
+1. Copying resident information after filtering the list
+
+   1. Prerequisites: Enter `find n/Alex`.
 
    1. Test case: `copy`<br>
-      Expected: All displayed residents' information is copied to clipboard. Confirmation message shown in the status message. Timestamp in the status bar is updated.
+      Expected: Only residents matching the search results are copied to the clipboard. A confirmation message is
+      shown in the status message.
+      <br><br>
 
-   1. Test case: `copy` after using `find` command<br>
-      Expected: All residents matching the search results are copied to clipboard. Confirmation message shown in the status message.
 
-   1. Test case: `copy` when the list is empty<br>
-      Expected: Command executes but copies empty or minimal data. Appropriate message shown in the status message.
+1. Copying resident information when the list is empty
 
-1. _{ more test cases …​ }_
+   1. Prerequisites: Enter `clear`.
+
+   1. Test case: `copy`<br>
+      Expected: No data is copied. A message indicating that there are no residents to copy is shown in the status
+      message.
+
+<box type="important" seamless>
+
+**Note:** The `clear` command is destructive and will wipe the data stored. This is intentional. Upon restart, the address book will remain empty. To get back the sample residents, delete the `addressbook.json` and restart the application.
+
+</box>
 
 ### Saving data
 
