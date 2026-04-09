@@ -592,16 +592,31 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Test case: Double-click the jar file.<br>
+      Expected: The GUI opens with a set of sample residents shown in the resident list. The initial window size
+      may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Prerequisites: Launch the application.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   1. Test case: Resize the window to an optimum size. Move the window to a different location. Close the window.
+      Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location are retained.
 
-1. _{ more test cases …​ }_
+3. Opening the help window
+
+   1. Prerequisites: Launch the application.
+
+   1. Test case: `help`<br>
+      Expected: A help window opens. A confirmation message is shown in the status message.
+
+4. Exiting the application
+
+   1. Prerequisites: Launch the application.
+
+   1. Test case: `exit`<br>
+      Expected: The application closes.
 
 ### Listing residents
 
@@ -900,8 +915,6 @@ multiple residents are displayed in the resident list.
    1. Test case: `copy`<br>
       Expected: Only residents matching the search results are copied to the clipboard. A confirmation message is
       shown in the status message.
-      <br><br>
-
 
 1. Copying resident information when the list is empty
 
