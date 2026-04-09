@@ -603,6 +603,138 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Listing residents
+
+Prerequisites for all test cases below: Launch the application with the sample data loaded.
+
+1. Listing all residents from the sample data
+
+   1. Test case: `list`<br>
+      Expected: All residents are displayed in the resident list. A success message is shown.
+<br><br>
+1. Listing all residents after applying a search filter
+
+   1. Prerequisites: Enter `find n/Alex` so that only matching residents are shown.
+
+   1. Test case: `list`<br>
+      Expected: The search filter is cleared and all residents are displayed again in the resident list.
+      <br><br>
+1. Listing all residents after sorting the displayed list
+
+   1. Prerequisites: Enter `sort unit` so that the currently displayed list is no longer in its default order.
+
+   1. Test case: `list`<br>
+      Expected: All residents are displayed again in the default list order.
+      <br><br>
+1. Listing residents when the address book is empty
+
+   1. Prerequisites: Enter `clear`.
+
+   1. Test case: `list`<br>
+      Expected: No residents are displayed. A message indicating that no residents were found is shown.
+<box type="important" seamless>
+
+**Note:** The `clear` command is destructive and will wipe the data stored. This is intentional. Upon restart, the address book will remain empty. To get back the sample residents, delete the `addressbook.json` and restart the application.
+
+</box>
+
+### Adding a resident
+
+Prerequisites for all test cases below: Launch the application with the sample data loaded.
+
+1. Adding a resident without specifying a role
+
+   1. Test case: `add n/John Doe p/95551234 u/12/1/A`<br>
+      Expected: A new resident is added to the resident list. A success message is shown.
+   <br><br>
+
+1. Adding a resident with an explicit role
+
+   1. Test case: `add n/Jane Tan p/95551235 u/12/1/B r/FH`<br>
+      Expected: A new resident is added to the resident list with role `FH`. A success message is shown.
+      <br><br>
+
+1. Adding a resident with a missing required field
+
+   1. Test case: `add n/John Doe p/95551236`<br>
+      Expected: No resident is added. Error details for invalid command format are shown.
+      <br><br>
+
+1. Adding a resident with an invalid role
+
+   1. Test case: `add n/John Doe p/95551236 u/12/1/C r/INVALID`<br>
+      Expected: No resident is added. Error details for invalid role are shown.
+      <br><br>
+
+1. Adding a resident with a duplicate phone number
+
+   1. Test case: `add n/John Doe p/87438807 u/12/1/D`<br>
+      Expected: No resident is added. Error details indicating a duplicate phone number are shown.
+      <br><br>
+
+1. Adding a resident with a duplicate unit number
+
+   1. Test case: `add n/John Doe p/95551237 u/30/1/A`<br>
+      Expected: No resident is added. Error details indicating a duplicate unit number are shown.
+      <br><br>
+
+1. Adding a resident that duplicates an existing resident
+
+   1. Test case: `add n/Alex Yeoh p/87438807 u/99/9/Z`<br>
+      Expected: No resident is added. Error details indicating that the resident already exists are shown.
+
+### Finding residents
+
+Prerequisites for all test cases below: Launch the application with the sample data loaded.
+
+1. Finding residents by name
+
+   1. Test case: `find n/Alex`<br>
+      Expected: Only `Alex Yeoh` is displayed in the resident list.
+      <br><br>
+1. Finding residents by phone number substring
+
+   1. Test case: `find p/388`<br>
+      Expected: Only `Alex Yeoh` is displayed in the resident list.
+      <br><br>
+1. Finding residents by unit number substring
+
+   1. Test case: `find u/20/7`<br>
+      Expected: Only `Bernice Yu` is displayed in the resident list.
+      <br><br>
+1. Finding residents by role
+
+   1. Test case: `find r/RA`<br>
+      Expected: Only `Charlotte Oliveiro` is displayed in the resident list.
+      <br><br>
+1. Finding residents by unassigned role
+
+   1. Test case: `find r/unassigned`<br>
+      Expected: Only residents without an assigned role are displayed. `David Li`, `Irfan Ibrahim`, and
+      `Roy Balakrishnan` are shown in the resident list.
+      <br><br>
+1. Finding residents using multiple criteria
+
+   1. Test case: `find n/Alex r/HA`<br>
+      Expected: Only residents matching all specified criteria are displayed. `Alex Yeoh` is shown in the
+      resident list.
+      <br><br>
+1. Finding residents with invalid unprefixed input
+
+   1. Test case: `find Alex`<br>
+      Expected: No filtering is applied. Error details for invalid command format are shown.
+      <br><br>
+1. Finding residents with mixed prefixed and unprefixed input
+
+   1. Test case: `find 388 n/Alex`<br>
+      Expected: No filtering is applied. Error details indicating that prefixed and unprefixed terms cannot be
+      mixed are shown.
+      <br><br>
+1. Finding residents with no matches
+
+   1. Test case: `find n/ZZZ`<br>
+      Expected: No residents are displayed. A message indicating that `0` residents were listed is shown.
+      <br><br>
 ### Deleting a resident
 
 1. Deleting a resident while all residents are being shown
