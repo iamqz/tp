@@ -63,15 +63,18 @@ It allows users to quickly **view and manage residents** in a locally stored lis
   e.g. in the fielded form of `find`, `[n/NAME]...` can be omitted entirely, used once as
   `find n/Alex`, or repeated as `find n/Alex n/David`.
 
-* Parameters can be in any order.<br>
+* Prefixed fields in `add`, `edit`, and `find` can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER u/UNIT_NUMBER`,
   `u/UNIT_NUMBER p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Roles use the `r/` prefix. Valid role values are `HA`, `FH`, `RA`, and `NONE`.<br>
   `NONE` is especially useful with `edit` when you want to remove an assigned role.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored with the exception of `copy`, so as to avoid misleading usage.<br> (e.g. `copy 1` does not copy the first resident in the index)<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for `help`, `list`, `exit`, and `clear` are ignored.<br>
+  e.g. `help 123` is interpreted as `help`.
+
+* `copy` accepts no parameters.<br>
+  e.g. `copy 1` is invalid and does not copy the 1st resident.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
@@ -130,7 +133,7 @@ Examples:
 
 Edits an existing resident in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [u/UNIT_NUMBER] [r/ROLE]`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [u/UNIT_NUMBER] [r/ROLE]`
 
 * Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed resident list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -151,6 +154,7 @@ Format:
 * `find [n/NAME]... [p/PHONE_NUMBER]... [u/UNIT_NUMBER]... [r/ROLE]...`
 
 Rules:
+* At least one prefixed search term must be provided.
 * Every search term must be prefixed.
 * `n/` matches resident names word-by-word, case-insensitively, using partial matching.
 * `n/` also tolerates up to one insertion, deletion, or substitution in a name word.
@@ -197,6 +201,7 @@ Format: `copy`
 
 * Copies all available resident information currently displayed.
 * The copied information includes the names, phone numbers, unit numbers, and roles of all residents in the current view.
+* `copy` does not accept an index or any other parameter. Use `list` or `find` first to choose the current view.
 
 Examples:
 * `list` followed by `copy` copies all residents' information in the address book.
@@ -244,10 +249,6 @@ While editing the currently displayed past input:
 - Navigation position in history is maintained. That is, despite editing, pressing:
   - Up Arrow Key (`↑`) will still navigate to the command directly earlier (if available).
   - Down Arrow Key (`↓`) will still navigate to the command directly more recent (if available).
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
