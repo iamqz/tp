@@ -112,6 +112,18 @@ This also resets any active sort and returns the displayed list to its default o
 
 Format: `list`
 
+<box type="info" seamless>
+
+**View Reset Behavior:** The following commands reset the filtered view and show all residents again:
+* `list` - Resets both filtered and sorted views to default
+* `add` - Resets filtered view when adding a new resident
+* `edit` - Resets filtered view when editing a resident
+
+The `find` command updates the filtered view to show search results but preserves any active sort.
+
+**Note on `sort` command**: When you apply a sort, the filtered view is reset to show all residents, and the sorting is applied to this complete default list. This ensures consistent sorting across all data.
+</box>
+
 ### Sorting the displayed resident list : `sort`
 
 Sorts the displayed list of residents by the specified field.
@@ -121,6 +133,7 @@ Format: `sort FIELD`
 * `FIELD` must be one of `name`, `phone`, `unit`, or `role`.
 * Sorting affects the currently displayed list of residents.
 * `sort role` orders residents by role precedence: `HA`, `FH`, `RA`, then residents without a role.
+* **Sorted view is temporary and not persistent**: The sort order is only applied to the current session and is lost when the application exits. It also resets when you use `list`, `add`, or `edit` commands.
 * `list` resets the displayed order back to the default order.
 
 Examples:
@@ -232,6 +245,10 @@ QuickLookup data are saved automatically as a JSON file `[JAR file location]/dat
 **Caution:**
 If your changes to the data file makes its format invalid, QuickLookup will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the QuickLookup to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+
+**Important:**
+* **Valid roles**: Ensure that the `role` field contains only valid values: `HA`, `FH`, `RA`, or `NONE`. Using any other role value will cause the application to treat it as invalid, resulting in data not being loaded at all.
+* **No duplicate contacts**: Do not create duplicate entries with the same phone number or unit number, as the application enforces uniqueness constraints for these fields and may behave unexpectedly if duplicates are present.
 </box>
 
 ### Navigating command history using arrow keys
