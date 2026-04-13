@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class UnitNumber {
     public static final int MAX_LENGTH = 100;
-    public static final String MESSAGE_CONSTRAINTS = "Unit Numbers can take any values, it should not be blank and "
-            + "must not exceed " + MAX_LENGTH + " characters.";
+    public static final String MESSAGE_CONSTRAINTS = "Unit Numbers can take any values, it should not be blank, "
+            + "cannot contain forward slash (/) and must not exceed " + MAX_LENGTH + " characters.";
 
     /*
      * The first character of the unit number must not be a whitespace,
