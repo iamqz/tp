@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Precondition: User has started the application and the Resident to be deleted is in the list of Residents**
 
 **MSS**
-1. User requests for the list of Residents (UC2).
+1. User <u>requests for the list of Residents (UC2)</u>.
 2. User requests for the deletion of a Resident.
 3. System deletes the specified Resident from the list (Storage).
 4. System displays the new list of Residents.
@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Precondition: User has started the application**
 
 **MSS**
-1. User requests for the list of Residents (UC2).
+1. User <u>requests for the list of Residents (UC2).</u>
 2. User requests to copy resident information.
 3. System copies all displayed residents' information (names, phone numbers, unit numbers, roles) to the device's clipboard.
 4. System displays a confirmation message.
