@@ -796,14 +796,14 @@ Prerequisites for all test cases below: Launch the application with the sample d
    1. Prerequisites: Enter `sort phone` so that the list is not already in role order.
 
    2. Test case: `sort role`<br>
-      Expected: Residents are displayed in ascending role order, with assigned roles shown before unassigned
+      Expected: Residents are displayed in ascending role order, with residents whose role is `NONE` shown last
       residents: `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro`, `David Li`, `Irfan Ibrahim`,
       `Roy Balakrishnan`.
       <br><br>
 
 5. Sorting a filtered resident list
 
-   1. Prerequisites: Enter `find r/NONE` so that only unassigned residents are shown.
+   1. Prerequisites: Enter `find r/NONE` so that only residents whose role is `NONE` are shown.
 
    2. Test case: `sort unit`<br>
       Expected: Only the filtered residents remain displayed, sorted by unit number: `Irfan Ibrahim`,

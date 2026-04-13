@@ -89,11 +89,11 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_unassignedRoleAlias_returnsFindCommand() {
+    public void parse_noneRole_returnsFindCommand() {
         FindCommand expectedFindCommand = new FindCommand(new ResidentMatchesFindPredicate(
                 List.of(), List.of(), List.of(), List.of(Role.NONE)));
 
-        assertParseSuccess(parser, "r/unassigned", expectedFindCommand);
+        assertParseSuccess(parser, "r/NONE", expectedFindCommand);
     }
 
 }

@@ -14,7 +14,7 @@ public enum Role {
     RA("Resident Assistant", 2);
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Role should be one of HA, FH, RA, or unassigned.";
+            "Role should be one of HA, FH, RA, or NONE.";
 
     public final String role;
     private final int sortRank;

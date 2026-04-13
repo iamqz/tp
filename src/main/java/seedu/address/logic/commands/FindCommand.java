@@ -30,10 +30,10 @@ public class FindCommand extends Command {
             + "[" + PREFIX_UNIT_NUMBER + "UNIT_NUMBER]... "
             + "[" + PREFIX_ROLE + "ROLE]...\n"
             + "Every search term must be prefixed.\n"
-            + "Role can be HA, FH, RA, or unassigned.\n"
+            + "Role can be HA, FH, RA, or NONE.\n"
             + "Examples: " + COMMAND_WORD + " n/alex n/david\n"
             + "          " + COMMAND_WORD + " n/alex p/9876 u/02-25 r/HA\n"
-            + "          " + COMMAND_WORD + " r/unassigned";
+            + "          " + COMMAND_WORD + " r/NONE";
 
     private final Predicate<Resident> predicate;
 

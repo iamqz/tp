@@ -16,7 +16,6 @@ import seedu.address.model.resident.UnitNumber;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final String UNASSIGNED_ROLE_ALIAS = "UNASSIGNED";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -78,28 +77,16 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String role} into an {@code Role}.
-     * Leading and trailing whitespaces will be trimmed. The user-facing alias
-     * {@code unassigned} is mapped to {@link Role#NONE}.
+     * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
-        String normalizedRole = normalizeRole(role);
+        String normalizedRole = role.trim().toUpperCase();
         if (!Role.isValidRole(normalizedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
         return Role.valueOf(normalizedRole);
-    }
-
-    /**
-     * Normalizes accepted user-facing role aliases to the corresponding enum name.
-     */
-    private static String normalizeRole(String role) {
-        String trimmedRole = role.trim().toUpperCase();
-        if (UNASSIGNED_ROLE_ALIAS.equals(trimmedRole)) {
-            return Role.NONE.name();
-        }
-        return trimmedRole;
     }
 }
