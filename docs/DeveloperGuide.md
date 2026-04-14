@@ -128,7 +128,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object).
-* stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list, and maintains a _sorted_ view layered over that filtered list for commands such as `sort`. The sorted view is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed', e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPrefs` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPrefs` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -169,7 +169,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Provides quick access to residents' information (e.g. Mobile Number, Next-of-Kin's contact, Unit Number) in times of emergency
+**Value proposition**: Provides quick access to residents' information (e.g. Mobile Number, Unit Number) in times of emergency
 
 
 ### User stories
