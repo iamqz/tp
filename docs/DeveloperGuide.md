@@ -616,6 +616,60 @@ Prerequisites for all test cases below: Launch the application with the sample d
    1. Test case: `add n/Alex Yeoh p/87438807 u/99-9-Z`<br>
       Expected: No resident is added. Error details indicating that the resident already exists are shown.
 
+### Editing a resident
+
+Prerequisites for all test cases below: Launch the application with the sample data loaded. Enter `list` so that
+multiple residents are displayed in the resident list. Run each test case from the original sample data state.
+
+1. Editing a resident's details
+
+   1. Test case: `edit 1 n/Alex Tan p/95551238 u/31-2-A r/NONE`<br>
+      Expected: The first resident is edited. `Alex Tan` is displayed with phone number `95551238`, unit number
+      `31-2-A`, and no displayed role. A success message is shown.
+      <br><br>
+
+2. Editing only the role
+
+   1. Test case: `edit 2 r/RA`<br>
+      Expected: `Bernice Yu` is edited to have the `RA` role. A success message is shown.
+      <br><br>
+
+3. Editing with no fields provided
+
+   1. Test case: `edit 1`<br>
+      Expected: No resident is edited. Error details indicating that at least one field to edit must be provided
+      are shown.
+      <br><br>
+
+4. Editing a resident with an invalid index
+
+   1. Test case: `edit 0 p/95551238`<br>
+      Expected: No resident is edited. Error details for invalid command format are shown.
+      <br><br>
+
+5. Editing a resident with an out-of-range index
+
+   1. Test case: `edit 999 p/95551238`<br>
+      Expected: No resident is edited. Error details indicating that the resident index is invalid are shown.
+      <br><br>
+
+6. Editing a resident with a duplicate phone number
+
+   1. Test case: `edit 2 p/87438807`<br>
+      Expected: No resident is edited. Error details indicating a duplicate phone number are shown.
+      <br><br>
+
+7. Editing a resident with a duplicate unit number
+
+   1. Test case: `edit 2 u/30-1-A`<br>
+      Expected: No resident is edited. Error details indicating a duplicate unit number are shown.
+      <br><br>
+
+8. Editing a resident with an invalid role
+
+   1. Test case: `edit 1 r/INVALID`<br>
+      Expected: No resident is edited. Error details for invalid role are shown.
+
 ### Finding residents
 
 Prerequisites for all test cases below: Launch the application with the sample data loaded.
